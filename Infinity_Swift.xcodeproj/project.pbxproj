@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B0127C219E43EB80069858A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0127C119E43EB80069858A /* AppDelegate.swift */; };
 		5B0127C519E43EB80069858A /* Infinity_Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B0127C319E43EB80069858A /* Infinity_Swift.xcdatamodeld */; };
-		5B0127C719E43EB80069858A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0127C619E43EB80069858A /* ViewController.swift */; };
+		5B0127C719E43EB80069858A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0127C619E43EB80069858A /* HomeViewController.swift */; };
 		5B0127CA19E43EB80069858A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B0127C819E43EB80069858A /* Main.storyboard */; };
 		5B0127CC19E43EB80069858A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B0127CB19E43EB80069858A /* Images.xcassets */; };
 		5B0127CF19E43EB80069858A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B0127CD19E43EB80069858A /* LaunchScreen.xib */; };
@@ -126,7 +126,7 @@
 		5B0127C019E43EB80069858A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B0127C119E43EB80069858A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B0127C419E43EB80069858A /* Infinity_Swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Infinity_Swift.xcdatamodel; sourceTree = "<group>"; };
-		5B0127C619E43EB80069858A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B0127C619E43EB80069858A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5B0127C919E43EB80069858A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B0127CB19E43EB80069858A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5B0127CE19E43EB80069858A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -272,11 +272,10 @@
 		5B0127BE19E43EB80069858A /* Infinity_Swift */ = {
 			isa = PBXGroup;
 			children = (
+				5B0128AA19E443350069858A /* controllers */,
 				5B0127E719E442890069858A /* fonts */,
 				5B0127E819E442930069858A /* movies */,
 				5B0127E419E442250069858A /* images */,
-				5B0127C119E43EB80069858A /* AppDelegate.swift */,
-				5B0127C619E43EB80069858A /* ViewController.swift */,
 				5B0127C819E43EB80069858A /* Main.storyboard */,
 				5B0127CB19E43EB80069858A /* Images.xcassets */,
 				5B0127CD19E43EB80069858A /* LaunchScreen.xib */,
@@ -429,6 +428,31 @@
 			children = (
 			);
 			name = movies;
+			sourceTree = "<group>";
+		};
+		5B0128AA19E443350069858A /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5B0128AC19E4436D0069858A /* home */,
+				5B0128AB19E443650069858A /* App */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		5B0128AB19E443650069858A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5B0127C119E43EB80069858A /* AppDelegate.swift */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		5B0128AC19E4436D0069858A /* home */ = {
+			isa = PBXGroup;
+			children = (
+				5B0127C619E43EB80069858A /* HomeViewController.swift */,
+			);
+			name = home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -626,7 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B0127C719E43EB80069858A /* ViewController.swift in Sources */,
+				5B0127C719E43EB80069858A /* HomeViewController.swift in Sources */,
 				5B0127C219E43EB80069858A /* AppDelegate.swift in Sources */,
 				5B0127C519E43EB80069858A /* Infinity_Swift.xcdatamodeld in Sources */,
 			);
@@ -822,6 +846,7 @@
 				5B0127E019E43EB80069858A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5B0127E119E43EB80069858A /* Build configuration list for PBXNativeTarget "Infinity_SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -830,6 +855,7 @@
 				5B0127E319E43EB80069858A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
