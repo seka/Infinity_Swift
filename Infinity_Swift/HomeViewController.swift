@@ -188,10 +188,24 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         animation.toValue   = NSValue(CGPoint:CGPointMake(btn.layer.position.x, btn.layer.position.y - CGFloat(40)))
         animation.autoreverses = true
         
-        // アニメーションを追加
         btn.layer.addAnimation(animation, forKey: "move-layer")
+        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("transitionProfilePage")
+                                                              , userInfo: nil, repeats: true)
+        
     }
     
+    /**
+    * transitionProfilePage
+    * Profileページへと遷移する
+    */
+    func transitionProfilePage() {
+        // StoryBoardIDがProfileViewControllerのViewを呼び出す
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nc = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as UIViewController
+        self.presentViewController(nc, animated: true, completion: nil)
+    }
+ 
     /**
     * didReciveMemoryWarning
     * メモリが圧迫されると警告を示す

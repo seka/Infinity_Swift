@@ -269,7 +269,7 @@
                                     <rect key="frame" x="546" y="407" width="103" height="43"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="OLa-gI-mxJ" kind="modal" id="Mpa-gg-Qv8"/>
+                                    <segue destination="OLa-gI-mxJ" kind="modal" identifier="ProfileForSegue" id="Mpa-gg-Qv8"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
@@ -381,7 +381,7 @@
         <!--Profile View Controller-->
         <scene sceneID="UWK-SA-yrj">
             <objects>
-                <viewController id="OLa-gI-mxJ" customClass="ProfileViewController" customModule="Infinity_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="OLa-gI-mxJ" customClass="ProfileViewController" customModule="Infinity_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQf-bN-lGx"/>
                         <viewControllerLayoutGuide type="bottom" id="53l-px-Ldo"/>
