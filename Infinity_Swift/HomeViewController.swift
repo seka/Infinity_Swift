@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  Infinity_Swift
 //
 //  Created by PxP_ss on 2014/10/08.
@@ -27,7 +27,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // 画像の表示数
-    var displayViewNum    = 0
     var maxDisplayViewNum = 0
     
     // 画像のサイズ
@@ -44,7 +43,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var leftViewIndex :NSInteger = 0
     var rightViewIndex:NSInteger = 0
     
-    var images = NSMutableArray()
+    var images           = NSMutableArray()
+    var contentsOfScroll = NSMutableArray()
     
     /**
     *  viewDidLoad
@@ -57,17 +57,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
 
         for (var i = 0; i < self.testImagesName.count; i++){
-            var iv = UIImageView()
-            iv.image = UIImage(named: self.testImagesName[i])
-            iv.tag = i
+            var image = UIImage()
+            image = UIImage(named: self.testImagesName[i])!
             
-            self.images.addObject(iv)
-            
-            self.scrollView.addSubview(iv)
+            self.images.addObject(image)
         }
  
         maxDisplayViewNum = self.images.count
-        displayViewNum = maxDisplayViewNum - 2
         
         leftViewIndex  = 0
         rightViewIndex = maxDisplayViewNum - 1
@@ -93,10 +89,18 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         // 画像の初期位置の設定
         for (var i = 0; i < self.images.count; i++){
-            var iv = self.images[i] as UIImageView
-            iv.frame = CGRectMake(imageWidth * CGFloat(i), 0, imageWidth, imageHeight)
+            var image = self.images[i] as UIImage
             
-            self.images[i] = iv
+            var btn = UIButton()
+            btn.frame = CGRectMake(imageWidth * CGFloat(i), imageHeight / CGFloat(2), imageWidth, imageHeight)
+            btn.tag = i
+            
+            btn.setImage(image, forState: .Normal)
+            btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
+            
+            self.contentsOfScroll.addObject(btn)
+            
+            self.scrollView.addSubview(btn)
         }
         
         // UIScrollViewの可視領域の左端
@@ -110,16 +114,16 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     /**
     * scrollViewDidScroll
-    * スクロールが怒った際に、呼び出されるイベント
+    * スクロールが起きる際に呼び出されるイベント
+    *
     * param: scrollView スクロールビュー
     */
     func scrollViewDidScroll(scrollView:UIScrollView) {
-        var pos   :CGFloat   = scrollView.contentOffset.x / imageWidth
-        var delta :CGFloat   = pos - CGFloat(leftImageIndex)
-        var pageCount :NSInteger = NSInteger(fabs(delta))
+        var currentIndex :NSInteger = NSInteger(scrollView.contentOffset.x / imageWidth)
+        var indexMovement:NSInteger = currentIndex - leftImageIndex
         
-       	for (var i = 0; i < pageCount; i++) {
-            if (delta > 0){
+       	for (var i = 0; i < abs(indexMovement); i++) {
+            if (indexMovement > 0){
                 self.scrollWithDirection(ScrollDirection.kScrollDirectionRight)
             }
             else {
@@ -147,28 +151,45 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: scrollDirection 左に移動したのか、右に移動したのかを示すステータス変数
     */
     func scrollWithDirection(scrollDirection:ScrollDirection) {
-        var sign       :NSInteger = 0
+        var direction  :NSInteger = 0
         var viewIndex  :NSInteger = 0
-        var imageIndex :NSInteger = 0
         
         if (scrollDirection == ScrollDirection.kScrollDirectionLeft){
-            sign = -1
+            direction  = -1
             viewIndex  = rightViewIndex
-            imageIndex = leftImageIndex - 1
         }
         else if (scrollDirection == ScrollDirection.kScrollDirectionRight){
-            sign = 1
+            direction  = 1
             viewIndex  = leftViewIndex
-            imageIndex = leftImageIndex + displayViewNum
         }
         
-        var iv = self.images[viewIndex] as UIImageView
-        iv.frame.origin.x += imageWidth * CGFloat(self.images.count * sign)
+        var btn = self.contentsOfScroll[viewIndex] as UIButton
+        btn.frame.origin.x += imageWidth * CGFloat(self.images.count * direction)
         
-        leftImageIndex += sign
+        // 画面に映る最も左のインデックスを更新
+        leftImageIndex += direction
         
-        leftViewIndex  = self.addImageIndex(leftViewIndex , incremental: sign)
-        rightViewIndex = self.addImageIndex(rightViewIndex, incremental: sign)
+        // 画面外の両端の画像のインデックスを更新
+        leftViewIndex  = self.addImageIndex(leftViewIndex , incremental: direction)
+        rightViewIndex = self.addImageIndex(rightViewIndex, incremental: direction)
+    }
+    
+    /**
+    * selectedButton
+    * ボタンをタップした際に呼び出されるイベント
+    *
+    * param: btn タップされたボタンオブジェクト
+    */
+    func selectedButton(btn: UIButton!) {
+        var animation = CABasicAnimation(keyPath:"position")
+        animation.duration    = 0.1
+        animation.repeatCount = 3
+        animation.fromValue = NSValue(CGPoint:btn.layer.position)
+        animation.toValue   = NSValue(CGPoint:CGPointMake(btn.layer.position.x, btn.layer.position.y - CGFloat(40)))
+        animation.autoreverses = true
+        
+        // アニメーションを追加
+        btn.layer.addAnimation(animation, forKey: "move-layer")
     }
     
     /**

@@ -108,6 +108,7 @@
 		5B0128A419E442B90069858A /* titleframe_big_y.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B01284519E442B90069858A /* titleframe_big_y.png */; };
 		5B0128A519E442B90069858A /* wire_mainmenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B01284619E442B90069858A /* wire_mainmenu.png */; };
 		5B0128A619E442B90069858A /* wire_names.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B01284719E442B90069858A /* wire_names.png */; };
+		5B02FF4419FCE53A00D34A0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,6 +230,7 @@
 		5B0128A719E442E30069858A /* DIN-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN-Light.otf"; sourceTree = "<group>"; };
 		5B0128A819E442E30069858A /* NettoOT-Bold 2.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NettoOT-Bold 2.otf"; sourceTree = "<group>"; };
 		5B0128A919E442E30069858A /* NettoOT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NettoOT-Bold.otf"; sourceTree = "<group>"; };
+		5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +409,7 @@
 		5B0128AA19E443350069858A /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5B02FF4219FCE52300D34A0E /* Profile */,
 				5B0128AC19E4436D0069858A /* home */,
 				5B0128AB19E443650069858A /* App */,
 			);
@@ -427,6 +430,14 @@
 				5B0127C619E43EB80069858A /* HomeViewController.swift */,
 			);
 			name = home;
+			sourceTree = "<group>";
+		};
+		5B02FF4219FCE52300D34A0E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		5B2CE94119ED230E00E69ECA /* test_image */ = {
@@ -656,6 +667,7 @@
 			files = (
 				5B0127C719E43EB80069858A /* HomeViewController.swift in Sources */,
 				5B0127C219E43EB80069858A /* AppDelegate.swift in Sources */,
+				5B02FF4419FCE53A00D34A0E /* ProfileViewController.swift in Sources */,
 				5B0127C519E43EB80069858A /* Infinity_Swift.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
