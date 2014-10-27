@@ -418,12 +418,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="728"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot_ol.png" translatesAutoresizingMaskIntoConstraints="NO" id="o9C-dp-nM4">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="440" y="736" width="6" height="6"/>
-                                </variation>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="titleframe_big_w.png" translatesAutoresizingMaskIntoConstraints="NO" id="1us-Dd-SOY">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -433,7 +427,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AOS-Ci-E2B">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="180" y="49" width="105" height="53"/>
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxC-Jc-dhQ">
@@ -451,7 +445,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="170" y="575" width="103" height="74"/>
+                                    <rect key="frame" x="217" y="575" width="103" height="74"/>
                                 </variation>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pym-4Y-M8g">
@@ -463,19 +457,10 @@
                                     <rect key="frame" x="817" y="575" width="103" height="74"/>
                                 </variation>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsW-jj-pIM">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button" image="bt_movie.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="461" y="575" width="103" height="74"/>
-                                </variation>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indi_mainmenu.png" translatesAutoresizingMaskIntoConstraints="NO" id="Elp-vg-pVC">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="170" y="641" width="102" height="18"/>
+                                    <rect key="frame" x="217" y="643" width="102" height="18"/>
                                 </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikd-xu-m8T">
@@ -687,17 +672,24 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsW-jj-pIM">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="bt_movie.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="520" y="575" width="103" height="74"/>
+                                </variation>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92540204524993896" green="0.92555379867553711" blue="0.9253697395324707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="o9C-dp-nM4"/>
                                 <exclude reference="1us-Dd-SOY"/>
                                 <exclude reference="AOS-Ci-E2B"/>
                                 <exclude reference="GxC-Jc-dhQ"/>
                                 <exclude reference="5OP-6J-Umn"/>
                                 <exclude reference="Pym-4Y-M8g"/>
-                                <exclude reference="qsW-jj-pIM"/>
                                 <exclude reference="Elp-vg-pVC"/>
                                 <exclude reference="ikd-xu-m8T"/>
                                 <exclude reference="p8I-tX-UPT"/>
@@ -711,17 +703,16 @@
                                 <exclude reference="yCC-Rf-bfg"/>
                                 <exclude reference="pjZ-ns-L1Q"/>
                                 <exclude reference="PQh-mb-lei"/>
+                                <exclude reference="qsW-jj-pIM"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
-                                <include reference="o9C-dp-nM4"/>
                                 <include reference="1us-Dd-SOY"/>
                                 <include reference="AOS-Ci-E2B"/>
                                 <include reference="GxC-Jc-dhQ"/>
                                 <include reference="5OP-6J-Umn"/>
                                 <include reference="Pym-4Y-M8g"/>
-                                <include reference="qsW-jj-pIM"/>
                                 <include reference="Elp-vg-pVC"/>
                                 <include reference="ikd-xu-m8T"/>
                                 <include reference="p8I-tX-UPT"/>
@@ -735,6 +726,7 @@
                                 <include reference="yCC-Rf-bfg"/>
                                 <include reference="pjZ-ns-L1Q"/>
                                 <include reference="PQh-mb-lei"/>
+                                <include reference="qsW-jj-pIM"/>
                             </mask>
                         </variation>
                     </view>
@@ -744,7 +736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBy-cY-kRq" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="972" y="154.5"/>
+            <point key="canvasLocation" x="996" y="154.5"/>
         </scene>
     </scenes>
     <resources>
