@@ -46,6 +46,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     var images           = NSMutableArray()
     var contentsOfScroll = NSMutableArray()
     
+    // ボタンアニメーション用のフラグ
+    var animated = false
+    
     /**
     *  viewDidLoad
     *  画面が描画される際に1度だけ実行される、各種変数などの初期化処理に仕様
@@ -181,6 +184,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: btn タップされたボタンオブジェクト
     */
     func selectedButton(btn: UIButton!) {
+        
+        if (animated){
+            return
+        }
+        
+        animated = true
+        
         var animation = CABasicAnimation(keyPath:"position")
         animation.duration    = 0.1
         animation.repeatCount = 3
@@ -190,9 +200,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         btn.layer.addAnimation(animation, forKey: "move-layer")
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("transitionProfilePage")
-                                                              , userInfo: nil, repeats: true)
-        
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("transitionProfilePage")
+                                                  , userInfo: nil, repeats: true)
     }
     
     /**
