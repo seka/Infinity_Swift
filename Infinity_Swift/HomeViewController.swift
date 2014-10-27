@@ -12,6 +12,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    struct TestUser {
+        var id = 1
+        var userName = "Sekaryo Shin"
+        var nickName = "ゆるふわ草食系男子"
+        var live = "Okinawa"
+        var keywords = ["guitar", "programing", "coffeescript"]
+    }
+    
     let testImagesName = [
             "foto_tomari_s.png"
             , "foto_angie_s.png"
@@ -95,7 +103,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             var image = self.images[i] as UIImage
             
             var btn = UIButton()
-            btn.frame = CGRectMake(imageWidth * CGFloat(i), imageHeight / CGFloat(2), imageWidth, imageHeight)
+            btn.frame = CGRectMake(imageWidth * CGFloat(i), 20, imageWidth, imageHeight)
             btn.tag = i
             
             btn.setImage(image, forState: .Normal)
@@ -201,18 +209,37 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         btn.layer.addAnimation(animation, forKey: "move-layer")
         
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("transitionProfilePage")
-                                                  , userInfo: nil, repeats: true)
+                                                  , userInfo: nil, repeats: false)
     }
     
     /**
     * transitionProfilePage
-    * Profileページへと遷移する
+    * Profileページへと遷移するセグエを呼び出す
     */
     func transitionProfilePage() {
-        // StoryBoardIDがProfileViewControllerのViewを呼び出す
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let nc = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController") as UIViewController
-        self.presentViewController(nc, animated: true, completion: nil)
+        self.performSegueWithIdentifier("ProfileForSegue", sender: self)
+    }
+    
+    /**
+    * prepareForSegue
+    * 次のページへの値渡しを行う
+    *
+    * param: segue
+    * param: sender
+    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier != "ProfileForSegue"){
+           return
+        }
+        
+        var testUser = TestUser()
+       
+        var vc = segue.destinationViewController as ProfileViewController
+        vc.id = testUser.id
+        vc.userName = testUser.userName
+        vc.nickName = testUser.nickName
+        vc.live     = testUser.live
+        vc.keywards = testUser.keywords
     }
  
     /**

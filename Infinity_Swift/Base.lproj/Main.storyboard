@@ -266,12 +266,6 @@
                                     <segue destination="OLa-gI-mxJ" kind="modal" identifier="ProfileForSegue" id="Mpa-gg-Qv8"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                </variation>
-                            </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRe-uY-cmx">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -302,6 +296,12 @@
                                     <rect key="frame" x="32" y="660" width="110" height="1"/>
                                 </variation>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="258" y="271" width="625" height="135"/>
+                                </variation>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.92540204524993896" green="0.92555379867553711" blue="0.9253697395324707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="default">
@@ -341,10 +341,10 @@
                                 <exclude reference="Tzr-Ed-w1X"/>
                                 <exclude reference="QlZ-gX-tBX"/>
                                 <exclude reference="t76-bo-YiB"/>
-                                <exclude reference="oXX-Kn-ESz"/>
                                 <exclude reference="fRe-uY-cmx"/>
                                 <exclude reference="a2I-w6-uke"/>
                                 <exclude reference="ehI-K4-aox"/>
+                                <exclude reference="oXX-Kn-ESz"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -388,10 +388,10 @@
                                 <include reference="Tzr-Ed-w1X"/>
                                 <include reference="QlZ-gX-tBX"/>
                                 <include reference="t76-bo-YiB"/>
-                                <include reference="oXX-Kn-ESz"/>
                                 <include reference="fRe-uY-cmx"/>
                                 <include reference="a2I-w6-uke"/>
                                 <include reference="ehI-K4-aox"/>
+                                <include reference="oXX-Kn-ESz"/>
                             </mask>
                         </variation>
                     </view>
@@ -409,7 +409,7 @@
         <!--Profile View Controller-->
         <scene sceneID="UWK-SA-yrj">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" id="OLa-gI-mxJ" customClass="ProfileViewController" customModule="Infinity_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OLa-gI-mxJ" customClass="ProfileViewController" customModule="Infinity_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bQf-bN-lGx"/>
                         <viewControllerLayoutGuide type="bottom" id="53l-px-Ldo"/>
@@ -492,9 +492,6 @@
                                 <state key="normal" image="bt_menu.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="43" y="36" width="41" height="57"/>
-                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="43" y="36" width="41" height="57"/>
                                 </variation>

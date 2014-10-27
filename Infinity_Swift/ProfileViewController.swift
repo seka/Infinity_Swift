@@ -10,6 +10,12 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    var id = NSInteger()
+    var userName = NSString()
+    var nickName = NSString()
+    var live     = NSString()
+    var keywards = NSArray()
+    
     /**
     *  viewDidLoad
     *  画面が描画される際に1度だけ実行される、各種変数などの初期化処理に仕様
@@ -17,6 +23,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        println("userName:\(userName)")
         
     }
     
