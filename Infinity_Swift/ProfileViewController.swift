@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
     var nickName = NSString()
     var live     = NSString()
     var keywards = NSArray()
-    var themeColor:UIColor = .redColor()
+    var themeColor = UIColor()
     
     /**
     *  viewDidLoad
@@ -52,7 +52,13 @@ class ProfileViewController: UIViewController {
         
         var contentSize = CGSizeMake(maxScrollSize, 350)
         self.scrollViewOfProfile.contentSize = contentSize
-        
+    }
+    
+    /**
+    *  viewWillAppear
+    *  画面が描画される度に実行される、各種変数などの初期化処理
+    */
+    override func viewWillAppear(animated: Bool) {
         self.updateProfileContents()
         self.updateMovieContents()
         self.updatePhotoContents()
@@ -69,6 +75,7 @@ class ProfileViewController: UIViewController {
         self.labelOfName.text      = self.userName
         self.labelOfNickName.text  = self.nickName
         self.labelOfLive.text      = "MADE IN " + self.live
+        self.themeColor            = .redColor()
     }
     
     /**
