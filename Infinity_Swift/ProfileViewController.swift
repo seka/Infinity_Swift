@@ -11,7 +11,6 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var scrollViewOfProfile: UIScrollView!
-    
     @IBOutlet weak var imageViewOfPageCursor: UIImageView!
     
     // Insert xib
@@ -54,20 +53,48 @@ class ProfileViewController: UIViewController {
         var contentSize = CGSizeMake(maxScrollSize, 350)
         self.scrollViewOfProfile.contentSize = contentSize
         
-        self.updateContents()
+        self.updateProfileContents()
+        self.updateMovieContents()
+        self.updatePhotoContents()
     }
    
     /**
-    * updateContents
+    * updateProfileContetns
     * xib上のUIの初期化を行う
     */
-    func updateContents() {
+    func updateProfileContents() {
         self.labelOfPageTitle.text = self.userName + "'s Profile"
         self.imageOfProfile.image  = UIImage(named: "foto_angie_s")!
         self.labelOfJob.text       = "ENGINEER"
         self.labelOfName.text      = self.userName
         self.labelOfNickName.text  = self.nickName
         self.labelOfLive.text      = "MADE IN " + self.live
+    }
+    
+    /**
+    * updateMovieContetns
+    * xib上のUIの初期化を行う
+    */
+    func updateMovieContents() {
+        var contentsSize = CGRectMake(860, 0, 800, 350)
+        
+        var iv = UIImageView(frame: contentsSize)
+        iv.image = UIImage(named: "bt_playmovie_ogata")
+        
+        self.scrollViewOfProfile.addSubview(iv)
+    }
+    
+    /**
+    * updatePhotoContetns
+    * xib上のUIの初期化を行う
+    */
+    func updatePhotoContents() {
+        var contentsSize = CGRectMake(1720, 0, 800, 350)
+        
+        var iv = UIImageView(frame: contentsSize)
+        iv.image = UIImage(named: "moodboard_angie")
+        
+        self.scrollViewOfProfile.addSubview(iv)
     }
     
     /**
@@ -109,7 +136,7 @@ class ProfileViewController: UIViewController {
     * param: sender
     */
     @IBAction func goPhoto(sender: UIButton) {
-        var movement = CGPointMake(1710, 0)
+        var movement = CGPointMake(1720, 0)
         self.scrollViewOfProfile.setContentOffset(movement, animated: true)
         
         UIView.animateWithDuration(0.5, animations: {

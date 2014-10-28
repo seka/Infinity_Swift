@@ -244,7 +244,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         var testUser = TestUser()
        
         var vc = segue.destinationViewController as ProfileViewController
-        vc.id = testUser.id
+        vc.id       = testUser.id
         vc.userName = testUser.userName
         vc.nickName = testUser.nickName
         vc.live     = testUser.live
