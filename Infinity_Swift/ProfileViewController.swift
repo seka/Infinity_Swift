@@ -10,9 +10,11 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var backGroundOfProfile: UIView!
+    @IBOutlet weak var scrollViewOfProfile: UIScrollView!
     
-    // insert xib
+    @IBOutlet weak var imageViewOfPageCursor: UIImageView!
+    
+    // Insert xib
     @IBOutlet weak var labelOfPageTitle : UILabel!
     @IBOutlet weak var imageOfProfile   : UIImageView!
     @IBOutlet weak var labelOfJob       : UILabel!
@@ -22,6 +24,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet      var labelOfKeywords  : [UILabel]!
     @IBOutlet weak var labelOfMessage   : UILabel!
     @IBOutlet weak var labelOfEnneagram : UILabel!
+    
+    var maxScrollSize: CGFloat = 2656
     
     // 前のページから受け継ぐ変数
     var id       = NSInteger()
@@ -33,26 +37,29 @@ class ProfileViewController: UIViewController {
     
     /**
     *  viewDidLoad
-    *  画面が描画される際に1度だけ実行される、各種変数などの初期化処理に仕様
+    *  画面が描画される際に1度だけ実行される、各種変数などの初期化処理
     */
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         var triangle = TriangleView(frame: CGRectMake(0, 0, 460, 285), color: self.themeColor)
-        self.backGroundOfProfile.addSubview(triangle)
-        self.backGroundOfProfile.sendSubviewToBack(triangle)
+        self.scrollViewOfProfile.addSubview(triangle)
+        self.scrollViewOfProfile.sendSubviewToBack(triangle)
         
         var rectangle = RectangleView(frame: CGRectMake(460, 0, 400, 285), color: self.themeColor)
-        self.backGroundOfProfile.addSubview(rectangle)
-        self.backGroundOfProfile.sendSubviewToBack(rectangle)
+        self.scrollViewOfProfile.addSubview(rectangle)
+        self.scrollViewOfProfile.sendSubviewToBack(rectangle)
+        
+        var contentSize = CGSizeMake(maxScrollSize, 350)
+        self.scrollViewOfProfile.contentSize = contentSize
         
         self.updateContents()
     }
    
     /**
     * updateContents
-    * xib上のUIを修正
+    * xib上のUIの初期化を行う
     */
     func updateContents() {
         self.labelOfPageTitle.text = self.userName + "'s Profile"
@@ -61,6 +68,54 @@ class ProfileViewController: UIViewController {
         self.labelOfName.text      = self.userName
         self.labelOfNickName.text  = self.nickName
         self.labelOfLive.text      = "MADE IN " + self.live
+    }
+    
+    /**
+    * goProfile
+    * プロフィールページへ移動する
+    *
+    * param: sender
+    */
+    @IBAction func goProfile(sender: UIButton) {
+        var movement = CGPointMake(0, 0)
+        self.scrollViewOfProfile.setContentOffset(movement, animated: true)
+        
+        UIView.animateWithDuration(0.5, animations: {
+            var movement = CGRectMake(217, 643, 102, 18)
+            self.imageViewOfPageCursor.frame = movement
+        })   
+    }
+    
+    /**
+    * goMovie
+    * ムービーページヘ移動する
+    *
+    * param: sender
+    */
+    @IBAction func goMovie(sender: UIButton) {
+        var movement = CGPointMake(860, 0)
+        self.scrollViewOfProfile.setContentOffset(movement, animated: true)
+        
+        UIView.animateWithDuration(0.5, animations: {
+            var movement = CGRectMake(520, 643, 102, 18)
+            self.imageViewOfPageCursor.frame = movement
+        })
+    }
+    
+    /**
+    * goPhoto
+    * ムードボードページヘ移動する
+    *
+    * param: sender
+    */
+    @IBAction func goPhoto(sender: UIButton) {
+        var movement = CGPointMake(1710, 0)
+        self.scrollViewOfProfile.setContentOffset(movement, animated: true)
+        
+        UIView.animateWithDuration(0.5, animations: {
+            var movement = CGRectMake(817, 643, 102, 18)
+            self.imageViewOfPageCursor.frame = movement
+        })   
     }
     
     /**

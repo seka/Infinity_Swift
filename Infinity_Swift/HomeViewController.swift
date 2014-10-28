@@ -59,7 +59,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     /**
     *  viewDidLoad
-    *  画面が描画される際に1度だけ実行される、各種変数などの初期化処理に仕様
+    *  画面が描画される際に1度だけ実行される、各種変数などの初期化処理に
     */
     override func viewDidLoad() {
         
@@ -80,6 +80,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         rightViewIndex = maxDisplayViewNum - 1
         
         self.updateScrollViewSetting()
+    }
+    
+    /**
+    *  viewWillAppear
+    *  画面が描画される度に実行される、各種変数などの初期化処理に
+    */
+    override func viewWillAppear(animated: Bool) {
+        self.animated = false
     }
     
     /**
@@ -228,6 +236,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: sender
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if (segue.identifier != "ProfileForSegue"){
            return
         }
