@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController {
         self.backGroundOfProfile.addSubview(triangle)
         self.backGroundOfProfile.sendSubviewToBack(triangle)
         
-        var rectangle = Rectangle(frame: CGRectMake(460, 0, 400, 285), color: self.themeColor)
+        var rectangle = RectangleView(frame: CGRectMake(460, 0, 400, 285), color: self.themeColor)
         self.backGroundOfProfile.addSubview(rectangle)
         self.backGroundOfProfile.sendSubviewToBack(rectangle)
         

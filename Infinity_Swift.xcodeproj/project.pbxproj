@@ -110,7 +110,7 @@
 		5B0128A619E442B90069858A /* wire_names.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B01284719E442B90069858A /* wire_names.png */; };
 		5B02FF4419FCE53A00D34A0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */; };
 		5B2229CF19FE6A50003E219D /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2229CE19FE6A50003E219D /* TriangleView.swift */; };
-		5B2229D119FE6EB3003E219D /* Rectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2229D019FE6EB3003E219D /* Rectangle.swift */; };
+		5B2229D119FE6EB3003E219D /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2229D019FE6EB3003E219D /* RectangleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,7 +234,7 @@
 		5B0128A919E442E30069858A /* NettoOT-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NettoOT-Bold.otf"; sourceTree = "<group>"; };
 		5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5B2229CE19FE6A50003E219D /* TriangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
-		5B2229D019FE6EB3003E219D /* Rectangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rectangle.swift; sourceTree = "<group>"; };
+		5B2229D019FE6EB3003E219D /* RectangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,7 +441,7 @@
 			children = (
 				5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */,
 				5B2229CE19FE6A50003E219D /* TriangleView.swift */,
-				5B2229D019FE6EB3003E219D /* Rectangle.swift */,
+				5B2229D019FE6EB3003E219D /* RectangleView.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -674,7 +674,7 @@
 				5B2229CF19FE6A50003E219D /* TriangleView.swift in Sources */,
 				5B0127C719E43EB80069858A /* HomeViewController.swift in Sources */,
 				5B0127C219E43EB80069858A /* AppDelegate.swift in Sources */,
-				5B2229D119FE6EB3003E219D /* Rectangle.swift in Sources */,
+				5B2229D119FE6EB3003E219D /* RectangleView.swift in Sources */,
 				5B02FF4419FCE53A00D34A0E /* ProfileViewController.swift in Sources */,
 				5B0127C519E43EB80069858A /* Infinity_Swift.xcdatamodeld in Sources */,
 			);

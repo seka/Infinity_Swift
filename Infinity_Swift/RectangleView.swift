@@ -1,5 +1,5 @@
 //
-//  Rectangle.swift
+//  RectangleView.swift
 //  Infinity_Swift
 //
 //  Created by PxP_ss on 2014/10/27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Rectangle: UIView {
+class RectangleView: UIView {
     
     var color = UIColor()
 
