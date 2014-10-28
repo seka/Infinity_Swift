@@ -430,15 +430,6 @@
                                     <rect key="frame" x="180" y="49" width="105" height="53"/>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxC-Jc-dhQ">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="298" y="73" width="154" height="21"/>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OP-6J-Umn">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="bt_profile.png">
@@ -471,6 +462,9 @@
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="953" y="37" width="36" height="57"/>
                                 </variation>
+                                <connections>
+                                    <action selector="goBack:" destination="OLa-gI-mxJ" eventType="touchUpInside" id="DqV-rR-mEr"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8I-tX-UPT">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -561,20 +555,20 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NickName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="He3-jS-fue">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="35"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="42" y="148" width="250" height="42"/>
+                                            <rect key="frame" x="42" y="117" width="440" height="42"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUX-lm-m4a">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="35"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="42" y="88" width="250" height="42"/>
+                                            <rect key="frame" x="42" y="57" width="440" height="42"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83e-vY-8aK">
@@ -588,29 +582,66 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="live" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOF-py-zsk">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="12"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="292" y="8" width="90" height="35"/>
+                                            <rect key="frame" x="269" y="8" width="183" height="35"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-ET-CWA">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="42" y="168" width="183" height="52"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enneagram" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFO-Lj-5oD">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="42" y="228" width="300" height="39"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNM-Oe-ofw">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="42" y="266" width="300" height="1"/>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZm-Gw-5sG">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="644" y="168" width="185" height="35"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIg-wE-E5L">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="645" y="273" width="185" height="35"/>
+                                            <rect key="frame" x="644" y="200" width="185" height="35"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBI-pl-61e">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="645" y="305" width="185" height="35"/>
+                                            <rect key="frame" x="644" y="232" width="185" height="35"/>
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6cL-r6-0Np">
@@ -633,15 +664,6 @@
                                             <rect key="frame" x="118" y="8" width="1" height="35"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yZm-Gw-5sG">
-                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="645" y="241" width="185" height="35"/>
-                                        </variation>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.88748586177825928" green="0.89841818809509277" blue="0.91273093223571777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <variation key="default">
@@ -650,11 +672,14 @@
                                         <exclude reference="zUX-lm-m4a"/>
                                         <exclude reference="83e-vY-8aK"/>
                                         <exclude reference="aOF-py-zsk"/>
+                                        <exclude reference="m6a-ET-CWA"/>
+                                        <exclude reference="VFO-Lj-5oD"/>
+                                        <exclude reference="KNM-Oe-ofw"/>
+                                        <exclude reference="yZm-Gw-5sG"/>
                                         <exclude reference="zIg-wE-E5L"/>
                                         <exclude reference="nBI-pl-61e"/>
                                         <exclude reference="6cL-r6-0Np"/>
                                         <exclude reference="cLm-wc-LMl"/>
-                                        <exclude reference="yZm-Gw-5sG"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -664,11 +689,14 @@
                                         <include reference="zUX-lm-m4a"/>
                                         <include reference="83e-vY-8aK"/>
                                         <include reference="aOF-py-zsk"/>
+                                        <include reference="m6a-ET-CWA"/>
+                                        <include reference="VFO-Lj-5oD"/>
+                                        <include reference="KNM-Oe-ofw"/>
+                                        <include reference="yZm-Gw-5sG"/>
                                         <include reference="zIg-wE-E5L"/>
                                         <include reference="nBI-pl-61e"/>
                                         <include reference="6cL-r6-0Np"/>
                                         <include reference="cLm-wc-LMl"/>
-                                        <include reference="yZm-Gw-5sG"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -681,13 +709,21 @@
                                     <rect key="frame" x="520" y="575" width="103" height="74"/>
                                 </variation>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GxC-Jc-dhQ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="293" y="73" width="206" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92540204524993896" green="0.92555379867553711" blue="0.9253697395324707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="1us-Dd-SOY"/>
                                 <exclude reference="AOS-Ci-E2B"/>
-                                <exclude reference="GxC-Jc-dhQ"/>
                                 <exclude reference="5OP-6J-Umn"/>
                                 <exclude reference="Pym-4Y-M8g"/>
                                 <exclude reference="Elp-vg-pVC"/>
@@ -704,13 +740,13 @@
                                 <exclude reference="pjZ-ns-L1Q"/>
                                 <exclude reference="PQh-mb-lei"/>
                                 <exclude reference="qsW-jj-pIM"/>
+                                <exclude reference="GxC-Jc-dhQ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="1us-Dd-SOY"/>
                                 <include reference="AOS-Ci-E2B"/>
-                                <include reference="GxC-Jc-dhQ"/>
                                 <include reference="5OP-6J-Umn"/>
                                 <include reference="Pym-4Y-M8g"/>
                                 <include reference="Elp-vg-pVC"/>
@@ -727,12 +763,27 @@
                                 <include reference="pjZ-ns-L1Q"/>
                                 <include reference="PQh-mb-lei"/>
                                 <include reference="qsW-jj-pIM"/>
+                                <include reference="GxC-Jc-dhQ"/>
                             </mask>
                         </variation>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="728"/>
+                    <connections>
+                        <outlet property="backGroundOfProfile" destination="PQh-mb-lei" id="mTW-ZB-iIY"/>
+                        <outlet property="imageOfProfile" destination="AOS-Ci-E2B" id="VIm-ex-poU"/>
+                        <outlet property="labelOfEnneagram" destination="VFO-Lj-5oD" id="gUI-I0-yEK"/>
+                        <outlet property="labelOfJob" destination="83e-vY-8aK" id="5wK-Bg-7gx"/>
+                        <outlet property="labelOfLive" destination="aOF-py-zsk" id="tOP-zT-f8X"/>
+                        <outlet property="labelOfMessage" destination="m6a-ET-CWA" id="jZg-Nw-0Yb"/>
+                        <outlet property="labelOfName" destination="zUX-lm-m4a" id="7ya-Hy-tli"/>
+                        <outlet property="labelOfNickName" destination="He3-jS-fue" id="4da-K2-tj1"/>
+                        <outlet property="labelOfPageTitle" destination="GxC-Jc-dhQ" id="LXf-Hb-lbN"/>
+                        <outletCollection property="labelOfKeywords" destination="yZm-Gw-5sG" collectionClass="NSMutableArray" id="FUo-oU-bmw"/>
+                        <outletCollection property="labelOfKeywords" destination="zIg-wE-E5L" collectionClass="NSMutableArray" id="Gog-DS-HQY"/>
+                        <outletCollection property="labelOfKeywords" destination="nBI-pl-61e" collectionClass="NSMutableArray" id="sg2-Eg-231"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBy-cY-kRq" sceneMemberID="firstResponder"/>
             </objects>
