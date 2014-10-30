@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="NettoOT-Bold 2.otf">
+        <mutableArray key="NettoOT-Bold.otf">
             <string>NettoOT-Bold</string>
             <string>NettoOT-Bold</string>
             <string>NettoOT-Bold</string>

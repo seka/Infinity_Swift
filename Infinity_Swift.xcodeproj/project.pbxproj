@@ -111,6 +111,10 @@
 		5B02FF4419FCE53A00D34A0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */; };
 		5B2229CF19FE6A50003E219D /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2229CE19FE6A50003E219D /* TriangleView.swift */; };
 		5B2229D119FE6EB3003E219D /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2229D019FE6EB3003E219D /* RectangleView.swift */; };
+		5B2229D31A00B701003E219D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B2229D21A00B701003E219D /* MobileCoreServices.framework */; };
+		5B2229D51A00C537003E219D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B2229D41A00C537003E219D /* MediaPlayer.framework */; };
+		5B48989D1A01D9B9009E719C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */; };
+		5B4898A01A0215BC009E719C /* ogata_movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B48989F1A0215BC009E719C /* ogata_movie.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +239,10 @@
 		5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5B2229CE19FE6A50003E219D /* TriangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		5B2229D019FE6EB3003E219D /* RectangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
+		5B2229D21A00B701003E219D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5B2229D41A00C537003E219D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		5B48989F1A0215BC009E719C /* ogata_movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = ogata_movie.mp4; path = ../ogata_movie.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +250,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B48989D1A01D9B9009E719C /* AssetsLibrary.framework in Frameworks */,
+				5B2229D51A00C537003E219D /* MediaPlayer.framework in Frameworks */,
+				5B2229D31A00B701003E219D /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +304,9 @@
 		5B0127BF19E43EB80069858A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */,
+				5B2229D41A00C537003E219D /* MediaPlayer.framework */,
+				5B2229D21A00B701003E219D /* MobileCoreServices.framework */,
 				5B0127C019E43EB80069858A /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -406,6 +420,7 @@
 		5B0127E819E442930069858A /* movies */ = {
 			isa = PBXGroup;
 			children = (
+				5B48989F1A0215BC009E719C /* ogata_movie.mp4 */,
 			);
 			name = movies;
 			sourceTree = "<group>";
@@ -526,6 +541,7 @@
 				TargetAttributes = {
 					5B0127BB19E43EB70069858A = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = E585BF6T3J;
 					};
 					5B0127D319E43EB80069858A = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -652,6 +668,7 @@
 				5B01288B19E442B90069858A /* indibar_selected.png in Resources */,
 				5B01285B19E442B90069858A /* bt_playmovie_ogata.png in Resources */,
 				5B01289519E442B90069858A /* moodboard_liu.png in Resources */,
+				5B4898A01A0215BC009E719C /* ogata_movie.mp4 in Resources */,
 				5B01288E19E442B90069858A /* line_rt.png in Resources */,
 				5B01289E19E442B90069858A /* tagcubes_y.png in Resources */,
 			);
@@ -804,6 +821,7 @@
 				INFOPLIST_FILE = Infinity_Swift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -814,6 +832,7 @@
 				INFOPLIST_FILE = Infinity_Swift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
