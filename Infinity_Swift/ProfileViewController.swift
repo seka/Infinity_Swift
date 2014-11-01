@@ -37,8 +37,12 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var themeColor = UIColor()
     
     // 動画再生に必要な変数（Assetを通してしかアクセスできないため）
-    var assetURL  = NSURL(string: "assets-library://asset/asset.mp4?id=363FB2BA-91B0-4B31-A439-93A88939B2B3&ext=mp4")
+    var assetUrlOfMovie  = NSURL(string: "assets-library://asset/asset.mp4?id=363FB2BA-91B0-4B31-A439-93A88939B2B3&ext=mp4")
     var moviePath = NSURL()
+    
+    // ムードボードに必要な変数（Assetを通してしかアクセスできないため）
+    var assetUrlOfPict = NSURL(string: "assets-library://asset/asset.JPG?id=6E5438ED-9A8C-4ED0-9DEA-AB2D8F8A9360&ext=JPG")
+    var pictPath = NSURL()
     
     /**
     *  viewDidLoad
@@ -91,29 +95,33 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     func updateMovieContents() {
         let assetLibrary = ALAssetsLibrary()
         assetLibrary.assetForURL(
-            assetURL
+            assetUrlOfMovie
             , resultBlock: {
                 (asset: ALAsset!) in
-                if asset != nil {
-                    let rep   = asset.defaultRepresentation()
-                    var iref  = rep.fullResolutionImage().takeUnretainedValue()
-                    
-                    self.moviePath = rep.url()
-                    
-                    var btn = UIButton()
-                    btn.frame            = CGRectMake(860, 0, 800, 350)
-                    btn.setImage(UIImage(CGImage: iref), forState: .Normal)
-                    btn.addTarget(self, action: "playMovie:", forControlEvents: .TouchUpInside)
-
-                    self.scrollViewOfProfile.addSubview(btn)
+                if (asset == nil) {
+                    return
                 }
+                
+                let rep  = asset.defaultRepresentation()
+                var iref = rep.fullResolutionImage().takeUnretainedValue()
+                
+                // playMovie関数で動画を再生する際に仕様
+                self.moviePath = rep.url()
+                
+                var btn = UIButton()
+                btn.frame = CGRectMake(860, 0, 800, 350)
+                
+                btn.setImage(UIImage(CGImage: iref), forState: .Normal)
+                btn.addTarget(self, action: "playMovie:", forControlEvents: .TouchUpInside)
+
+                self.scrollViewOfProfile.addSubview(btn)
             }
             , failureBlock: {
                 (error: NSError!) in
                 println("Error!\(error)")
             }
         )
-    }
+   }
     
     /**
     * playMovie
@@ -156,13 +164,29 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     * xib上のUIの初期化を行う
     */
     func updatePhotoContents() {
-        var contentsSize = CGRectMake(1720, 0, 800, 350)
-        
-        var iv = UIImageView(frame: contentsSize)
-        iv.image = UIImage(named: "moodboard_angie")
-        
-        self.scrollViewOfProfile.addSubview(iv)
-    }
+        let assetLibrary = ALAssetsLibrary()
+        assetLibrary.assetForURL(
+            assetUrlOfPict
+            , resultBlock: {
+                (asset: ALAsset!) in
+                if (asset == nil) {
+                    return
+                }
+                
+                let rep  = asset.defaultRepresentation()
+                
+                var contentsSize = CGRectMake(1720, 0, 800, 350)
+                var iv = UIImageView(frame: contentsSize)
+                iv.image = UIImage(CGImage: rep.fullResolutionImage().takeRetainedValue())
+                
+                self.scrollViewOfProfile.addSubview(iv)
+            }
+            , failureBlock: {
+                (error: NSError!) in
+                println("Error!\(error)")
+            }
+        )
+   }
     
     /**
     * goProfile
@@ -190,7 +214,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         var movement = CGPointMake(860, 0)
         self.scrollViewOfProfile.setContentOffset(movement, animated: true)
         
-        
         UIView.animateWithDuration(0.3, animations: {
             var movement = CGRectMake(520, 643, 102, 18)
             self.imageViewOfPageCursor.frame = movement
@@ -210,7 +233,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         UIView.animateWithDuration(0.3, animations: {
             var movement = CGRectMake(817, 643, 102, 18)
             self.imageViewOfPageCursor.frame = movement
-        })   
+        })
     }
     
     /**
