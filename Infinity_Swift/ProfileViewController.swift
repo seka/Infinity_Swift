@@ -113,15 +113,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
                 println("Error!\(error)")
             }
         )
-       
-        /*
-        var picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
-        picker.mediaTypes = ["public.movie"];
-        picker.allowsEditing = false
-        presentViewController(picker, animated: true, completion: nil)
-        */
     }
     
     /**
@@ -160,10 +151,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
             , userInfo: nil, repeats: false)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-    }
-
     /**
     * updatePhotoContetns
     * xib上のUIの初期化を行う
