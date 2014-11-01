@@ -26,8 +26,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var labelOfMessage   : UILabel!
     @IBOutlet weak var labelOfEnneagram : UILabel!
     
-    let maxScrollSize: CGFloat = 2656
-    
     // 前のページから受け継ぐ変数
     var id       = NSInteger()
     var userName = NSString()
@@ -36,13 +34,15 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var keywards = NSArray()
     var themeColor = UIColor()
     
+    // UIScrollViewのスクロールサイズを指定
+    let maxScrollSize: CGFloat = 2656
+    
     // 動画再生に必要な変数（Assetを通してしかアクセスできないため）
     var assetUrlOfMovie  = NSURL(string: "assets-library://asset/asset.mp4?id=363FB2BA-91B0-4B31-A439-93A88939B2B3&ext=mp4")
     var moviePath = NSURL()
     
     // ムードボードに必要な変数（Assetを通してしかアクセスできないため）
     var assetUrlOfPict = NSURL(string: "assets-library://asset/asset.JPG?id=6E5438ED-9A8C-4ED0-9DEA-AB2D8F8A9360&ext=JPG")
-    var pictPath = NSURL()
     
     /**
     *  viewDidLoad

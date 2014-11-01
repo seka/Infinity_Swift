@@ -111,7 +111,6 @@
 		5B02FF4419FCE53A00D34A0E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */; };
 		5B2229CF19FE6A50003E219D /* TriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2229CE19FE6A50003E219D /* TriangleView.swift */; };
 		5B2229D119FE6EB3003E219D /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2229D019FE6EB3003E219D /* RectangleView.swift */; };
-		5B2229D31A00B701003E219D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B2229D21A00B701003E219D /* MobileCoreServices.framework */; };
 		5B2229D51A00C537003E219D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B2229D41A00C537003E219D /* MediaPlayer.framework */; };
 		5B48989D1A01D9B9009E719C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
@@ -238,7 +237,6 @@
 		5B02FF4319FCE53A00D34A0E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5B2229CE19FE6A50003E219D /* TriangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleView.swift; sourceTree = "<group>"; };
 		5B2229D019FE6EB3003E219D /* RectangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
-		5B2229D21A00B701003E219D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5B2229D41A00C537003E219D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -250,7 +248,6 @@
 			files = (
 				5B48989D1A01D9B9009E719C /* AssetsLibrary.framework in Frameworks */,
 				5B2229D51A00C537003E219D /* MediaPlayer.framework in Frameworks */,
-				5B2229D31A00B701003E219D /* MobileCoreServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +301,6 @@
 			children = (
 				5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */,
 				5B2229D41A00C537003E219D /* MediaPlayer.framework */,
-				5B2229D21A00B701003E219D /* MobileCoreServices.framework */,
 				5B0127C019E43EB80069858A /* Info.plist */,
 			);
 			name = "Supporting Files";
