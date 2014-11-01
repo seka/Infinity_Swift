@@ -8,18 +8,12 @@
 
 import UIKit
 import MediaPlayer
-import MobileCoreServices
 import AssetsLibrary
 
 class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet weak var scrollViewOfProfile: UIScrollView!
     @IBOutlet weak var imageViewOfPageCursor: UIImageView!
-    
-    var testURL = "file:///Users/sekaryoushin/Library/Developer/CoreSimulator/Devices/A1B65DFE-FC90-42F7-8497-7B6CD9CECA03/data/Containers/Data/Application/FC091FF0-F26F-4E0D-9F8A-79FDA643BACA/tmp/trim.8D8ED8D1-0702-4179-B7C7-BAEDDEF43193.MOV"
-    
-    var testURL2 = "https://dl.dropboxusercontent.com/u/39295401/%E5%8B%95%E7%94%BB%202014-09-22%2018%2002%2042.mov"
-    
     
     // Insert xib
     @IBOutlet weak var labelOfPageTitle : UILabel!
@@ -32,7 +26,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBOutlet weak var labelOfMessage   : UILabel!
     @IBOutlet weak var labelOfEnneagram : UILabel!
     
-    var maxScrollSize: CGFloat = 2656
+    let maxScrollSize: CGFloat = 2656
     
     // 前のページから受け継ぐ変数
     var id       = NSInteger()
@@ -41,6 +35,10 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     var live     = NSString()
     var keywards = NSArray()
     var themeColor = UIColor()
+    
+    // 動画再生に必要な変数（Assetを通してしかアクセスできないため）
+    var assetURL  = NSURL(string: "assets-library://asset/asset.mp4?id=363FB2BA-91B0-4B31-A439-93A88939B2B3&ext=mp4")
+    var moviePath = NSURL()
     
     /**
     *  viewDidLoad
@@ -63,11 +61,11 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         self.updateMovieContents()
         self.updatePhotoContents()
         
-        var triangle = TriangleView(frame: CGRectMake(0, 0, 460, 285), color: self.themeColor)
+        let triangle = TriangleView(frame: CGRectMake(0, 0, 460, 285), color: self.themeColor)
         self.scrollViewOfProfile.addSubview(triangle)
         self.scrollViewOfProfile.sendSubviewToBack(triangle)
         
-        var rectangle = RectangleView(frame: CGRectMake(460, 0, 400, 285), color: self.themeColor)
+        let rectangle = RectangleView(frame: CGRectMake(460, 0, 400, 285), color: self.themeColor)
         self.scrollViewOfProfile.addSubview(rectangle)
         self.scrollViewOfProfile.sendSubviewToBack(rectangle)
     }
@@ -91,27 +89,31 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     * xib上のUIの初期化を行う
     */
     func updateMovieContents() {
-        
-        let fileURL = NSBundle.mainBundle().URLForResource("ogata_movie", withExtension: "mp4")
-        
-        var mvc = MPMoviePlayerViewController()
-        mvc.view.frame = CGRectMake(860, 0, self.scrollViewOfProfile.bounds.width, self.scrollViewOfProfile.bounds.height)
-        
-        var vc = mvc.moviePlayer
-        vc.contentURL     = fileURL
-        vc.view.frame     = CGRectMake(865, 10, 180, 110)
-        vc.scalingMode    = MPMovieScalingMode.Fill
-        vc.shouldAutoplay = false
-        vc.setFullscreen(true, animated: true)
-        
-        self.presentMoviePlayerViewControllerAnimated(mvc)
-        self.scrollViewOfProfile.addSubview(vc.view)
-        
-        /*　フルスクリーン
-        vc.view.frame = UIApplication.sharedApplication().keyWindow?.bounds as CGRect!
-        UIApplication.sharedApplication().keyWindow?.addSubview(vc.view)
-        */
-        
+        let assetLibrary = ALAssetsLibrary()
+        assetLibrary.assetForURL(
+            assetURL
+            , resultBlock: {
+                (asset: ALAsset!) in
+                if asset != nil {
+                    let rep   = asset.defaultRepresentation()
+                    var iref  = rep.fullResolutionImage().takeUnretainedValue()
+                    
+                    self.moviePath = rep.url()
+                    
+                    var btn = UIButton()
+                    btn.frame            = CGRectMake(860, 0, 800, 350)
+                    btn.setImage(UIImage(CGImage: iref), forState: .Normal)
+                    btn.addTarget(self, action: "playMovie:", forControlEvents: .TouchUpInside)
+
+                    self.scrollViewOfProfile.addSubview(btn)
+                }
+            }
+            , failureBlock: {
+                (error: NSError!) in
+                println("Error!\(error)")
+            }
+        )
+       
         /*
         var picker = UIImagePickerController()
         picker.delegate = self
@@ -120,27 +122,46 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         picker.allowsEditing = false
         presentViewController(picker, animated: true, completion: nil)
         */
+    }
+    
+    /**
+    * playMovie
+    * 動画をフルスクリーンで再生する
+    *
+    * param: sender
+    */
+    func playMovie(sender: UIButton) {
+        let mvc         = MPMoviePlayerViewController()
+        let vc          = mvc.moviePlayer
+        vc.contentURL   = self.moviePath
+        vc.scalingMode  = MPMovieScalingMode.Fill
         
+        self.presentMoviePlayerViewControllerAnimated(mvc)
+        
+        vc.setFullscreen(false, animated: true)
+        vc.play()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("endMovie:")
+            , name: MPMoviePlayerPlaybackDidFinishNotification, object: vc)
+    }
+    
+    /**
+    * endMovie
+    * 動画の再生終了後の処理
+    *
+    * param: notification
+    */
+    func endMovie(notification: NSNotification) {
+        NSNotificationCenter.defaultCenter().removeObserver(MPMoviePlayerPlaybackDidFinishNotification)
+        
+        // self.imageViewOfPageCursor.frameの位置をズラすために、時間を調整している
+        // これ以下の秒数を指定すると、指定した位置への移動がうまくいかない
+        NSTimer.scheduledTimerWithTimeInterval(0.6, target: self, selector: Selector("goMovie:")
+            , userInfo: nil, repeats: false)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        println(UIImagePickerControllerMediaURL)
-        println("----------")
-        println(info)
-        
         picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        var vc = MPMoviePlayerController()
-        vc.contentURL = info[UIImagePickerControllerMediaURL] as NSURL
-        // vc.view.frame = CGRectMake(860, 0, 800, 350)
-        vc.view.frame = CGRectMake(0, 0, 800, 350)
-        
-        
-        self.scrollViewOfProfile.addSubview(vc.view)
-        
-        vc.play()
-
-
     }
 
     /**
@@ -166,7 +187,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
         var movement = CGPointMake(0, 0)
         self.scrollViewOfProfile.setContentOffset(movement, animated: true)
         
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animateWithDuration(0.3, animations: {
             var movement = CGRectMake(217, 643, 102, 18)
             self.imageViewOfPageCursor.frame = movement
         })   
@@ -181,6 +202,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, U
     @IBAction func goMovie(sender: UIButton) {
         var movement = CGPointMake(860, 0)
         self.scrollViewOfProfile.setContentOffset(movement, animated: true)
+        
         
         UIView.animateWithDuration(0.3, animations: {
             var movement = CGRectMake(520, 643, 102, 18)
