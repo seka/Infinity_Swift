@@ -16,15 +16,18 @@ class AddUserViewController: UIViewController {
     @IBOutlet weak var textFieldOfLiving    : UITextField!
     @IBOutlet weak var textFieldOfMessage   : UITextField!
     @IBOutlet weak var textFieldOfEnneagram : UITextField!
+    @IBOutlet weak var pickerOfThemeColor   : UITextField!
     @IBOutlet weak var pickerOfMovie        : UITextField!
     @IBOutlet weak var pickerOfFace         : UITextField!
     @IBOutlet weak var pickerOfPicture      : UITextField!
-    @IBOutlet weak var buttonOfRegist       : UIButton!
  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func registUserInfo(sender: UIButton) {
     }
 
     override func didReceiveMemoryWarning() {

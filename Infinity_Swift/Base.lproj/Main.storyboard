@@ -983,7 +983,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="124" width="565" height="42"/>
+                                    <rect key="frame" x="314" y="113" width="565" height="42"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yDZ-FQ-FSI">
@@ -991,7 +991,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="158" width="565" height="30"/>
+                                    <rect key="frame" x="314" y="145" width="565" height="30"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NickName_ニックネーム" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAO-rC-IaI">
@@ -1000,7 +1000,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="185" width="565" height="42"/>
+                                    <rect key="frame" x="314" y="167" width="565" height="42"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5GV-hi-Rfd">
@@ -1008,7 +1008,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="218" width="565" height="30"/>
+                                    <rect key="frame" x="314" y="200" width="565" height="30"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Living_出身" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHd-bc-Vdd">
@@ -1017,7 +1017,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="248" width="565" height="42"/>
+                                    <rect key="frame" x="314" y="221" width="565" height="42"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q5y-96-igI">
@@ -1025,7 +1025,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="281" width="565" height="30"/>
+                                    <rect key="frame" x="314" y="255" width="565" height="30"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message_メッセージ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y97-Nf-0qo">
@@ -1034,7 +1034,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="307" width="565" height="42"/>
+                                    <rect key="frame" x="314" y="276" width="565" height="42"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JNo-sS-DiY">
@@ -1042,7 +1042,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="341" width="565" height="30"/>
+                                    <rect key="frame" x="314" y="310" width="565" height="30"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enneagram_エニアグラム" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mf-LD-3Nu">
@@ -1051,7 +1051,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="374" width="565" height="42"/>
+                                    <rect key="frame" x="314" y="332" width="565" height="42"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8UZ-DH-CqN">
@@ -1059,7 +1059,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="405" width="565" height="30"/>
+                                    <rect key="frame" x="314" y="366" width="565" height="30"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie_動画" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTz-Sf-6g9">
@@ -1068,7 +1068,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="436" width="565" height="42"/>
+                                    <rect key="frame" x="314" y="444" width="565" height="42"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6SY-jo-j7o">
@@ -1076,7 +1076,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="314" y="472" width="565" height="30"/>
+                                    <rect key="frame" x="314" y="477" width="565" height="30"/>
                                 </variation>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="face_顔写真" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0b-2q-CSP">
@@ -1119,7 +1119,27 @@
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="486" y="641" width="220" height="60"/>
                                 </variation>
+                                <connections>
+                                    <action selector="registUserInfo:" destination="A2S-5J-0Hs" eventType="touchUpInside" id="BOr-P6-6Pk"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ThemeColor_テーマカラー" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ul3-4Q-jWs">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="314" y="388" width="565" height="42"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pzc-oA-zq7">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="314" y="421" width="565" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.92540204520000002" green="0.92555379869999999" blue="0.92536973950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="default">
@@ -1157,6 +1177,8 @@
                                 <exclude reference="ROC-rp-bj7"/>
                                 <exclude reference="hDh-Rk-8VU"/>
                                 <exclude reference="wls-3n-RGz"/>
+                                <exclude reference="Ul3-4Q-jWs"/>
+                                <exclude reference="pzc-oA-zq7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1194,6 +1216,8 @@
                                 <include reference="ROC-rp-bj7"/>
                                 <include reference="hDh-Rk-8VU"/>
                                 <include reference="wls-3n-RGz"/>
+                                <include reference="Ul3-4Q-jWs"/>
+                                <include reference="pzc-oA-zq7"/>
                             </mask>
                         </variation>
                     </view>
@@ -1202,12 +1226,12 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="728"/>
                     <connections>
-                        <outlet property="buttonOfRegist" destination="wls-3n-RGz" id="qH4-wz-tIP"/>
                         <outlet property="imageOfProfile" destination="S8M-h8-aTs" id="R6b-da-KQd"/>
                         <outlet property="labelOfPageTitle" destination="Zfi-6w-bEG" id="u3B-83-VXC"/>
                         <outlet property="pickerOfFace" destination="LOJ-a3-cXM" id="80K-YJ-3Z0"/>
                         <outlet property="pickerOfMovie" destination="6SY-jo-j7o" id="sLG-ow-P5X"/>
                         <outlet property="pickerOfPicture" destination="hDh-Rk-8VU" id="t0O-AC-8Rl"/>
+                        <outlet property="pickerOfThemeColor" destination="pzc-oA-zq7" id="TTP-Pg-bCX"/>
                         <outlet property="textFieldOfEnneagram" destination="8UZ-DH-CqN" id="94b-7G-jpO"/>
                         <outlet property="textFieldOfLiving" destination="q5y-96-igI" id="x6Y-QA-Wdf"/>
                         <outlet property="textFieldOfMessage" destination="JNo-sS-DiY" id="XlO-8v-OD3"/>
