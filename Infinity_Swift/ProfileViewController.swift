@@ -10,7 +10,7 @@ import UIKit
 import MediaPlayer
 import AssetsLibrary
 
-class ProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class ProfileViewController: UIViewController {
     
     @IBOutlet weak var scrollViewOfProfile: UIScrollView!
     @IBOutlet weak var imageViewOfPageCursor: UIImageView!
