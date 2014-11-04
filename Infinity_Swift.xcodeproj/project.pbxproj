@@ -113,6 +113,7 @@
 		5B2229D119FE6EB3003E219D /* RectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2229D019FE6EB3003E219D /* RectangleView.swift */; };
 		5B2229D51A00C537003E219D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B2229D41A00C537003E219D /* MediaPlayer.framework */; };
 		5B48989D1A01D9B9009E719C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */; };
+		5B97541C1A08D73E008A7140 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B97541B1A08D73E008A7140 /* AddUserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +240,7 @@
 		5B2229D019FE6EB3003E219D /* RectangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleView.swift; sourceTree = "<group>"; };
 		5B2229D41A00C537003E219D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		5B97541B1A08D73E008A7140 /* AddUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +423,7 @@
 		5B0128AA19E443350069858A /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5B9754181A08D650008A7140 /* AddUser */,
 				5B02FF4219FCE52300D34A0E /* Profile */,
 				5B0128AC19E4436D0069858A /* home */,
 				5B0128AB19E443650069858A /* App */,
@@ -483,6 +486,14 @@
 				5B0127FE19E442B90069858A /* bt_playmovie_tomari.png */,
 			);
 			name = test_image;
+			sourceTree = "<group>";
+		};
+		5B9754181A08D650008A7140 /* AddUser */ = {
+			isa = PBXGroup;
+			children = (
+				5B97541B1A08D73E008A7140 /* AddUserViewController.swift */,
+			);
+			name = AddUser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -684,6 +695,7 @@
 				5B0127C719E43EB80069858A /* HomeViewController.swift in Sources */,
 				5B0127C219E43EB80069858A /* AppDelegate.swift in Sources */,
 				5B2229D119FE6EB3003E219D /* RectangleView.swift in Sources */,
+				5B97541C1A08D73E008A7140 /* AddUserViewController.swift in Sources */,
 				5B02FF4419FCE53A00D34A0E /* ProfileViewController.swift in Sources */,
 				5B0127C519E43EB80069858A /* Infinity_Swift.xcdatamodeld in Sources */,
 			);
