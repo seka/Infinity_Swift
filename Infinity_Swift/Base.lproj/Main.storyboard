@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="NettoOT-Bold.otf">
+        <mutableArray key="NettoOT-Bold 2.otf">
             <string>NettoOT-Bold</string>
             <string>NettoOT-Bold</string>
             <string>NettoOT-Bold</string>
@@ -23,22 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="728"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小さく" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1U-Hc-3EU">
-                                <rect key="frame" x="77" y="257" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="77" y="238" width="30" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大きく" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjF-FJ-Eh7">
-                                <rect key="frame" x="77" y="183" width="51" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="8"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="77" y="164" width="30" height="21"/>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9N-TE-68y">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="bt_menu.png">
@@ -48,7 +32,7 @@
                                     <rect key="frame" x="43" y="36" width="41" height="57"/>
                                 </variation>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THUMBNAIL SIZE_サイズ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cue-Gd-lyS">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User_ユーザ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cue-Gd-lyS">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -57,12 +41,6 @@
                                     <rect key="frame" x="32" y="120" width="101" height="21"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt_zoom.png" translatesAutoresizingMaskIntoConstraints="NO" id="nDH-kE-bmF">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="40" y="164" width="29" height="95"/>
-                                </variation>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fotoframe_l.png" translatesAutoresizingMaskIntoConstraints="NO" id="PnA-VZ-QFk">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -132,12 +110,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="732" y="480" width="6" height="30"/>
-                                </variation>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indibar_selected.png" translatesAutoresizingMaskIntoConstraints="NO" id="HrE-wN-8f8">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="732" y="513" width="6" height="30"/>
                                 </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="indibar_grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ph0-SE-1eW">
@@ -263,7 +235,7 @@
                                     <rect key="frame" x="546" y="407" width="103" height="43"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="OLa-gI-mxJ" kind="modal" identifier="ProfileForSegue" id="Mpa-gg-Qv8"/>
+                                    <segue destination="OLa-gI-mxJ" kind="presentation" identifier="ProfileForSegue" modalTransitionStyle="coverVertical" id="Mpa-gg-Qv8"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRe-uY-cmx">
@@ -299,18 +271,85 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="258" y="271" width="625" height="135"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 </variation>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWN-vW-IcI">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="11"/>
+                                <state key="normal" title="Add_ユーザの追加">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="149" width="110" height="30"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfS-wh-wor">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="11"/>
+                                <state key="normal" title="Edit_ユーザの編集">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="187" width="110" height="30"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zU-sf-sBg">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="11"/>
+                                <state key="normal" title="Delete_ユーザの削除">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="225" width="110" height="30"/>
+                                </variation>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEp-qb-qoJ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="732" y="513" width="6" height="30"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuL-NR-fy5">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="497" y="501" width="8" height="16"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhN-KG-X2G">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="484" y="501" width="8" height="16"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ba4-mx-reA">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="471" y="501" width="8" height="16"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.92540204524993896" green="0.92555379867553711" blue="0.9253697395324707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="j1U-Hc-3EU"/>
-                                <exclude reference="bjF-FJ-Eh7"/>
                                 <exclude reference="N9N-TE-68y"/>
                                 <exclude reference="Cue-Gd-lyS"/>
-                                <exclude reference="nDH-kE-bmF"/>
                                 <exclude reference="PnA-VZ-QFk"/>
                                 <exclude reference="YRI-cB-DWy"/>
                                 <exclude reference="fKz-ZK-LfF"/>
@@ -322,7 +361,6 @@
                                 <exclude reference="OHr-KT-0o9"/>
                                 <exclude reference="hxy-IW-GmI"/>
                                 <exclude reference="ZcW-7p-XhG"/>
-                                <exclude reference="HrE-wN-8f8"/>
                                 <exclude reference="Ph0-SE-1eW"/>
                                 <exclude reference="yiL-ss-4fb"/>
                                 <exclude reference="Ppk-DA-a9V"/>
@@ -345,6 +383,13 @@
                                 <exclude reference="a2I-w6-uke"/>
                                 <exclude reference="ehI-K4-aox"/>
                                 <exclude reference="oXX-Kn-ESz"/>
+                                <exclude reference="LWN-vW-IcI"/>
+                                <exclude reference="mfS-wh-wor"/>
+                                <exclude reference="0zU-sf-sBg"/>
+                                <exclude reference="AEp-qb-qoJ"/>
+                                <exclude reference="UuL-NR-fy5"/>
+                                <exclude reference="hhN-KG-X2G"/>
+                                <exclude reference="Ba4-mx-reA"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -354,10 +399,7 @@
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="subviews">
-                                <include reference="j1U-Hc-3EU"/>
-                                <include reference="bjF-FJ-Eh7"/>
                                 <include reference="Cue-Gd-lyS"/>
-                                <include reference="nDH-kE-bmF"/>
                                 <include reference="PnA-VZ-QFk"/>
                                 <include reference="YRI-cB-DWy"/>
                                 <include reference="fKz-ZK-LfF"/>
@@ -369,7 +411,6 @@
                                 <include reference="OHr-KT-0o9"/>
                                 <include reference="hxy-IW-GmI"/>
                                 <include reference="ZcW-7p-XhG"/>
-                                <include reference="HrE-wN-8f8"/>
                                 <include reference="Ph0-SE-1eW"/>
                                 <include reference="yiL-ss-4fb"/>
                                 <include reference="Ppk-DA-a9V"/>
@@ -392,6 +433,13 @@
                                 <include reference="a2I-w6-uke"/>
                                 <include reference="ehI-K4-aox"/>
                                 <include reference="oXX-Kn-ESz"/>
+                                <include reference="LWN-vW-IcI"/>
+                                <include reference="mfS-wh-wor"/>
+                                <include reference="0zU-sf-sBg"/>
+                                <include reference="AEp-qb-qoJ"/>
+                                <include reference="UuL-NR-fy5"/>
+                                <include reference="hhN-KG-X2G"/>
+                                <include reference="Ba4-mx-reA"/>
                             </mask>
                         </variation>
                     </view>
@@ -776,6 +824,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="bKh-2p-QTU"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="728"/>
@@ -797,7 +846,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBy-cY-kRq" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="996" y="154.5"/>
+            <point key="canvasLocation" x="966.75" y="154.5"/>
         </scene>
     </scenes>
     <resources>
@@ -816,7 +865,6 @@
         <image name="fotoframe_l.png" width="570" height="430"/>
         <image name="indi_mainmenu.png" width="283" height="54"/>
         <image name="indibar_grey.png" width="12" height="60"/>
-        <image name="indibar_selected.png" width="12" height="60"/>
         <image name="line_lft.png" width="71" height="546"/>
         <image name="line_rt.png" width="3" height="869"/>
         <image name="loops_all.png" width="633" height="280"/>
