@@ -268,12 +268,6 @@
                                     <rect key="frame" x="32" y="660" width="110" height="1"/>
                                 </variation>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                </variation>
-                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWN-vW-IcI">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="11"/>
@@ -284,7 +278,7 @@
                                     <rect key="frame" x="32" y="149" width="110" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="A2S-5J-0Hs" kind="presentation" id="dI1-y8-G3r"/>
+                                    <segue destination="A2S-5J-0Hs" kind="presentation" id="PGW-rv-huO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfS-wh-wor">
@@ -347,6 +341,12 @@
                                     <rect key="frame" x="471" y="501" width="8" height="16"/>
                                 </variation>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="258" y="277" width="625" height="122"/>
+                                </variation>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.92540204524993896" green="0.92555379867553711" blue="0.9253697395324707" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="default">
@@ -385,7 +385,6 @@
                                 <exclude reference="fRe-uY-cmx"/>
                                 <exclude reference="a2I-w6-uke"/>
                                 <exclude reference="ehI-K4-aox"/>
-                                <exclude reference="oXX-Kn-ESz"/>
                                 <exclude reference="LWN-vW-IcI"/>
                                 <exclude reference="mfS-wh-wor"/>
                                 <exclude reference="0zU-sf-sBg"/>
@@ -393,6 +392,7 @@
                                 <exclude reference="UuL-NR-fy5"/>
                                 <exclude reference="hhN-KG-X2G"/>
                                 <exclude reference="Ba4-mx-reA"/>
+                                <exclude reference="oXX-Kn-ESz"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=regular">
@@ -435,7 +435,6 @@
                                 <include reference="fRe-uY-cmx"/>
                                 <include reference="a2I-w6-uke"/>
                                 <include reference="ehI-K4-aox"/>
-                                <include reference="oXX-Kn-ESz"/>
                                 <include reference="LWN-vW-IcI"/>
                                 <include reference="mfS-wh-wor"/>
                                 <include reference="0zU-sf-sBg"/>
@@ -443,6 +442,7 @@
                                 <include reference="UuL-NR-fy5"/>
                                 <include reference="hhN-KG-X2G"/>
                                 <include reference="Ba4-mx-reA"/>
+                                <include reference="oXX-Kn-ESz"/>
                             </mask>
                         </variation>
                     </view>
@@ -455,7 +455,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118.5" y="154.5"/>
+            <point key="canvasLocation" x="133.5" y="154.5"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="UWK-SA-yrj">
@@ -844,9 +844,6 @@
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="203" y="539" width="103" height="74"/>
                                 </variation>
-                                <connections>
-                                    <action selector="goPhoto:" destination="A2S-5J-0Hs" eventType="touchUpInside" id="vyu-YZ-nxc"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifV-Dp-Rw1">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -857,7 +854,7 @@
                                     <rect key="frame" x="953" y="37" width="36" height="57"/>
                                 </variation>
                                 <connections>
-                                    <action selector="goBack:" destination="A2S-5J-0Hs" eventType="touchUpInside" id="ylc-Zc-akD"/>
+                                    <action selector="goBack:" destination="A2S-5J-0Hs" eventType="touchUpInside" id="ouA-5f-Z97"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpo-xp-Tcs">
@@ -922,9 +919,6 @@
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="203" y="137" width="103" height="74"/>
                                 </variation>
-                                <connections>
-                                    <action selector="goProfile:" destination="A2S-5J-0Hs" eventType="touchUpInside" id="L1c-lE-yAu"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVy-dV-6Wx">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -934,9 +928,6 @@
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="203" y="450" width="103" height="74"/>
                                 </variation>
-                                <connections>
-                                    <action selector="goMovie:" destination="A2S-5J-0Hs" eventType="touchUpInside" id="MPa-WY-k9D"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYX-qJ-FlS">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1113,16 +1104,6 @@
                                     <rect key="frame" x="314" y="600" width="565" height="30"/>
                                 </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wls-3n-RGz">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Regist_登録" backgroundImage="titleframe_big_b.png"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="486" y="641" width="220" height="60"/>
-                                </variation>
-                                <connections>
-                                    <action selector="registUserInfo:" destination="A2S-5J-0Hs" eventType="touchUpInside" id="BOr-P6-6Pk"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ThemeColor_テーマカラー" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ul3-4Q-jWs">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="16"/>
@@ -1140,6 +1121,16 @@
                                     <rect key="frame" x="314" y="421" width="565" height="30"/>
                                 </variation>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wls-3n-RGz">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Regist_登録" backgroundImage="titleframe_big_b.png"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="486" y="648" width="220" height="60"/>
+                                </variation>
+                                <connections>
+                                    <action selector="registUserInfo:" destination="A2S-5J-0Hs" eventType="touchUpInside" id="HKk-ry-wto"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92540204520000002" green="0.92555379869999999" blue="0.92536973950000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <variation key="default">
@@ -1176,9 +1167,9 @@
                                 <exclude reference="LOJ-a3-cXM"/>
                                 <exclude reference="ROC-rp-bj7"/>
                                 <exclude reference="hDh-Rk-8VU"/>
-                                <exclude reference="wls-3n-RGz"/>
                                 <exclude reference="Ul3-4Q-jWs"/>
                                 <exclude reference="pzc-oA-zq7"/>
+                                <exclude reference="wls-3n-RGz"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -1215,9 +1206,9 @@
                                 <include reference="LOJ-a3-cXM"/>
                                 <include reference="ROC-rp-bj7"/>
                                 <include reference="hDh-Rk-8VU"/>
-                                <include reference="wls-3n-RGz"/>
                                 <include reference="Ul3-4Q-jWs"/>
                                 <include reference="pzc-oA-zq7"/>
+                                <include reference="wls-3n-RGz"/>
                             </mask>
                         </variation>
                     </view>
@@ -1226,17 +1217,15 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="728"/>
                     <connections>
-                        <outlet property="imageOfProfile" destination="S8M-h8-aTs" id="R6b-da-KQd"/>
-                        <outlet property="labelOfPageTitle" destination="Zfi-6w-bEG" id="u3B-83-VXC"/>
-                        <outlet property="pickerOfFace" destination="LOJ-a3-cXM" id="80K-YJ-3Z0"/>
-                        <outlet property="pickerOfMovie" destination="6SY-jo-j7o" id="sLG-ow-P5X"/>
-                        <outlet property="pickerOfPicture" destination="hDh-Rk-8VU" id="t0O-AC-8Rl"/>
-                        <outlet property="pickerOfThemeColor" destination="pzc-oA-zq7" id="TTP-Pg-bCX"/>
-                        <outlet property="textFieldOfEnneagram" destination="8UZ-DH-CqN" id="94b-7G-jpO"/>
-                        <outlet property="textFieldOfLiving" destination="q5y-96-igI" id="x6Y-QA-Wdf"/>
-                        <outlet property="textFieldOfMessage" destination="JNo-sS-DiY" id="XlO-8v-OD3"/>
-                        <outlet property="textFieldOfNickName" destination="5GV-hi-Rfd" id="Ozl-sl-Trc"/>
-                        <outlet property="textFieldOfUserName" destination="yDZ-FQ-FSI" id="jmh-Vc-Phi"/>
+                        <outlet property="pickerOfFace" destination="LOJ-a3-cXM" id="iHr-bo-h7D"/>
+                        <outlet property="pickerOfMovie" destination="6SY-jo-j7o" id="pHn-bz-IhW"/>
+                        <outlet property="pickerOfPicture" destination="hDh-Rk-8VU" id="LaC-94-FaN"/>
+                        <outlet property="pickerOfThemeColor" destination="pzc-oA-zq7" id="1rC-1Q-Igk"/>
+                        <outlet property="textFieldOfEnneagram" destination="8UZ-DH-CqN" id="8Vf-JK-xd2"/>
+                        <outlet property="textFieldOfLiving" destination="q5y-96-igI" id="T4R-eh-BT0"/>
+                        <outlet property="textFieldOfMessage" destination="JNo-sS-DiY" id="uSi-gK-6ID"/>
+                        <outlet property="textFieldOfNickName" destination="5GV-hi-Rfd" id="3Kf-ns-Hl1"/>
+                        <outlet property="textFieldOfUserName" destination="yDZ-FQ-FSI" id="csr-e7-PEm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZK-oB-oug" sceneMemberID="firstResponder"/>

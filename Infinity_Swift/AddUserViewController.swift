@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddUserViewController: UIViewController {
+class AddUserViewController: UIViewController, UITextFieldDelegate {
     
     // Insert xib
     @IBOutlet weak var textFieldOfUserName  : UITextField!
@@ -23,13 +23,25 @@ class AddUserViewController: UIViewController {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+        
+        self.pickerOfThemeColor.delegate = self
+        self.pickerOfMovie.delegate      = self
+        self.pickerOfFace.delegate       = self
+        self.pickerOfPicture.delegate    = self
+    }   
     
     @IBAction func registUserInfo(sender: UIButton) {
     }
 
+    
+    @IBAction func goBack(sender: UIButton) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        return false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
