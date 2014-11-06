@@ -22,6 +22,10 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBOutlet weak var pickerOfFace         : UITextField!
     @IBOutlet weak var pickerOfPicture      : UITextField!
     
+    /**
+    *  viewDidLoad
+    *  画面が描画される際に1度だけ実行される、各種変数などの初期化処理
+    */
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -32,6 +36,13 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.pickerOfPicture.delegate    = self
     }
     
+    /**
+    * registUserInfo
+    * NSUserDefaltsに入力されたProfileを保存する
+    * TODO:入力値チェックをしていないので、余裕があったらやりたい
+    *
+    * param: sender Regist_登録ボタン
+    */
     @IBAction func registUserInfo(sender: UIButton) {
         let defaults = NSUserDefaults.standardUserDefaults()
         let uuid = NSUUID().UUIDString
@@ -51,10 +62,22 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         defaults.synchronize()
     }
     
+    /**
+    * goBack
+    * 前のページヘ戻る
+    *
+    * param: sender 戻るボタン
+    */
     @IBAction func goBack(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /**
+    * showPickerView
+    * picker~を選択された際に各種のUIPickerを描画する
+    *
+    * param: pickerId
+    */
     func showPickerView(pickerId: NSInteger) {
         // カラーピッカーの場合は呼び出さない
         if (pickerId == 1){
@@ -80,6 +103,13 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    /**
+    * themeColorPicker
+    * ThemeColorPickerを選択後の処理
+    *
+    * param: picker     ThemeColorPicker
+    * param: themeColor UIcolorまたはNil
+    */
     func themeColorPicker(picker: ThemeColorPicker, themeColor: UIColor?) {
         if ((themeColor) != nil){
             var hexColor = picker.HSVtoHexString(themeColor!) as NSString
@@ -89,8 +119,14 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         picker.removeFromSuperview()
     }
     
+    /**
+    * imagePickerController
+    * ImagePickerControllerを選択後の処理
+    *
+    * param: picker UIImagePicker
+    * param: info   ピッカーによって選択された写真・または動画情報
+    */
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        
         let url = info[UIImagePickerControllerReferenceURL] as NSURL
         
         // swiftでは自動的にbreakされる？
@@ -108,6 +144,14 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /**
+    * textFieldShouldBeginEditing
+    * テキストフィールドがタップされたときのイベント
+    * picker~から始まるtextFieldは、イベントをキャンセルして各種のPickerを表示する
+    *
+    * param  : textField
+    * returns: キーボードの表示・非表示を表すbool値
+    */
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         
         self.showPickerView(textField.tag)
@@ -115,6 +159,10 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         return false
     }
     
+    /**
+    * didReciveMemoryWarning
+    * メモリが圧迫されると警告を示す
+    */
     override func didReceiveMemoryWarning() {
         
         super.didReceiveMemoryWarning()
