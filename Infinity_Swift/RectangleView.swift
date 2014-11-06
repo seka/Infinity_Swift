@@ -25,9 +25,9 @@ class RectangleView: UIView {
     }
     
     override func drawRect(rect: CGRect) {
-        var ctx = UIGraphicsGetCurrentContext()
-        var width  = self.bounds.size.width
-        var height = self.bounds.size.height
+        let ctx = UIGraphicsGetCurrentContext()
+        let width  = self.bounds.size.width
+        let height = self.bounds.size.height
         
         self.color.setFill()
         

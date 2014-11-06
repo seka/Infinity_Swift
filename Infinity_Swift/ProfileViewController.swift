@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController {
     let maxScrollSize: CGFloat = 2656
     
     // 動画再生に必要な変数（Assetを通してしかアクセスできないため）
-    var assetUrlOfMovie  = NSURL(string: "assets-library://asset/asset.mp4?id=363FB2BA-91B0-4B31-A439-93A88939B2B3&ext=mp4")
+    var assetUrlOfMovie = NSURL(string: "assets-library://asset/asset.mp4?id=363FB2BA-91B0-4B31-A439-93A88939B2B3&ext=mp4")
     var moviePath = NSURL()
     
     // ムードボードに必要な変数（Assetを通してしかアクセスできないため）
@@ -98,7 +98,7 @@ class ProfileViewController: UIViewController {
             assetUrlOfMovie
             , resultBlock: {
                 (asset: ALAsset!) in
-                if (asset == nil) {
+                if (asset == nil){
                     return
                 }
                 
@@ -169,14 +169,14 @@ class ProfileViewController: UIViewController {
             assetUrlOfPict
             , resultBlock: {
                 (asset: ALAsset!) in
-                if (asset == nil) {
+                if (asset == nil){
                     return
                 }
                 
                 let rep  = asset.defaultRepresentation()
                 
-                var contentsSize = CGRectMake(1720, 0, 800, 350)
-                var iv = UIImageView(frame: contentsSize)
+                let contentsSize = CGRectMake(1720, 0, 800, 350)
+                let iv = UIImageView(frame: contentsSize)
                 iv.image = UIImage(CGImage: rep.fullResolutionImage().takeRetainedValue())
                 
                 self.scrollViewOfProfile.addSubview(iv)
@@ -195,11 +195,11 @@ class ProfileViewController: UIViewController {
     * param: sender
     */
     @IBAction func goProfile(sender: UIButton) {
-        var movement = CGPointMake(0, 0)
+        let movement = CGPointMake(0, 0)
         self.scrollViewOfProfile.setContentOffset(movement, animated: true)
         
         UIView.animateWithDuration(0.3, animations: {
-            var movement = CGRectMake(217, 643, 102, 18)
+            let movement = CGRectMake(217, 643, 102, 18)
             self.imageViewOfPageCursor.frame = movement
         })   
     }
@@ -211,11 +211,11 @@ class ProfileViewController: UIViewController {
     * param: sender
     */
     @IBAction func goMovie(sender: UIButton) {
-        var movement = CGPointMake(860, 0)
+        let movement = CGPointMake(860, 0)
         self.scrollViewOfProfile.setContentOffset(movement, animated: true)
         
         UIView.animateWithDuration(0.3, animations: {
-            var movement = CGRectMake(520, 643, 102, 18)
+            let movement = CGRectMake(520, 643, 102, 18)
             self.imageViewOfPageCursor.frame = movement
         })
     }
@@ -227,11 +227,11 @@ class ProfileViewController: UIViewController {
     * param: sender
     */
     @IBAction func goPhoto(sender: UIButton) {
-        var movement = CGPointMake(1720, 0)
+        let movement = CGPointMake(1720, 0)
         self.scrollViewOfProfile.setContentOffset(movement, animated: true)
         
         UIView.animateWithDuration(0.3, animations: {
-            var movement = CGRectMake(817, 643, 102, 18)
+            let movement = CGRectMake(817, 643, 102, 18)
             self.imageViewOfPageCursor.frame = movement
         })
     }

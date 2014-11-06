@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="NettoOT-Bold 2.otf">
+        <mutableArray key="NettoOT-Bold.otf">
             <string>NettoOT-Bold</string>
             <string>NettoOT-Bold</string>
             <string>NettoOT-Bold</string>
@@ -325,7 +325,7 @@
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="484" y="501" width="8" height="16"/>
@@ -810,7 +810,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBy-cY-kRq" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="966.75" y="154.5"/>
+            <point key="canvasLocation" x="1212.75" y="542.25"/>
         </scene>
         <!--Add User View Controller-->
         <scene sceneID="kLO-nd-aMA">
@@ -1123,6 +1123,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wls-3n-RGz">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
                                 <state key="normal" title="Regist_登録" backgroundImage="titleframe_big_b.png"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="486" y="648" width="220" height="60"/>
@@ -1230,7 +1231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZK-oB-oug" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="966.75" y="-447"/>
+            <point key="canvasLocation" x="1212.75" y="-90.75"/>
         </scene>
     </scenes>
     <resources>

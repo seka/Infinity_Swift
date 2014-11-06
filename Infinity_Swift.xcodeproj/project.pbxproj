@@ -114,6 +114,7 @@
 		5B2229D51A00C537003E219D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B2229D41A00C537003E219D /* MediaPlayer.framework */; };
 		5B48989D1A01D9B9009E719C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */; };
 		5B97541C1A08D73E008A7140 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B97541B1A08D73E008A7140 /* AddUserViewController.swift */; };
+		5B9754221A09FA95008A7140 /* ThemeColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9754211A09FA95008A7140 /* ThemeColorPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,6 +242,7 @@
 		5B2229D41A00C537003E219D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5B48989C1A01D9B8009E719C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		5B97541B1A08D73E008A7140 /* AddUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserViewController.swift; sourceTree = "<group>"; };
+		5B9754211A09FA95008A7140 /* ThemeColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColorPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -492,6 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				5B97541B1A08D73E008A7140 /* AddUserViewController.swift */,
+				5B9754211A09FA95008A7140 /* ThemeColorPicker.swift */,
 			);
 			name = AddUser;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B2229CF19FE6A50003E219D /* TriangleView.swift in Sources */,
+				5B9754221A09FA95008A7140 /* ThemeColorPicker.swift in Sources */,
 				5B0127C719E43EB80069858A /* HomeViewController.swift in Sources */,
 				5B0127C219E43EB80069858A /* AppDelegate.swift in Sources */,
 				5B2229D119FE6EB3003E219D /* RectangleView.swift in Sources */,
@@ -823,6 +827,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Infinity_Swift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -834,6 +839,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Infinity_Swift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
