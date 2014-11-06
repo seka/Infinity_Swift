@@ -8,8 +8,8 @@
 
 import UIKit
 
-class AddUserViewController: UIViewController, UITextFieldDelegate
-                           , UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate
+                           , UIImagePickerControllerDelegate, ThemeColorPickerDelegate {
     
     // Insert xib
     @IBOutlet weak var textFieldOfUserName  : UITextField!
@@ -21,7 +21,7 @@ class AddUserViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var pickerOfMovie        : UITextField!
     @IBOutlet weak var pickerOfFace         : UITextField!
     @IBOutlet weak var pickerOfPicture      : UITextField!
- 
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class AddUserViewController: UIViewController, UITextFieldDelegate
         self.pickerOfMovie.delegate      = self
         self.pickerOfFace.delegate       = self
         self.pickerOfPicture.delegate    = self
-   }
+ }
     
     @IBAction func registUserInfo(sender: UIButton) {
     }
@@ -43,41 +43,48 @@ class AddUserViewController: UIViewController, UITextFieldDelegate
     func showPickerView(pickerId: NSInteger) {
         // カラーピッカーの場合は呼び出さない
         if (pickerId == 1){
+            var colorPicker = ThemeColorPicker(frame: self.view.frame)
+            colorPicker.delegate = self
+            self.view.addSubview(colorPicker)
+            self.view.bringSubviewToFront(colorPicker)
             return
         }
         
-        var picker = UIImagePickerController()
-        picker.delegate      = self
-        picker.sourceType    = UIImagePickerControllerSourceType.SavedPhotosAlbum
-        picker.allowsEditing = false
-        picker.view.tag      = pickerId
+        var imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType    = UIImagePickerControllerSourceType.SavedPhotosAlbum
+        imagePicker.allowsEditing = false
+        imagePicker.view.tag      = pickerId
         
         // ムービーを呼び出す場合は、public.movieを指定
-        // ココらへんもう少しうまく場合分けしたい
+        // TODO:ココらへんもう少しうまく場合分けしたい
         if (pickerId == 2){
-            picker.mediaTypes = ["public.movie"];
+            imagePicker.mediaTypes = ["public.movie"];
         }
         
-        presentViewController(picker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func themeColorPicker(picker: ThemeColorPicker, themeColor: UIColor) {
+        var hexColor = picker.HSVtoHexString(themeColor) as NSString
+        self.pickerOfThemeColor.text = hexColor
+        picker.removeFromSuperview()
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        
+        let url = info[UIImagePickerControllerReferenceURL] as NSURL
+        
+        // swiftでは自動的にbreakされる？
         switch (picker.view.tag){
           case 2:
-            let url = info[UIImagePickerControllerReferenceURL] as NSURL
-            self.pickerOfMovie.text = url.absoluteString
-            break;
+            self.pickerOfMovie.text   = url.absoluteString
           case 3:
-            let url = info[UIImagePickerControllerReferenceURL] as NSURL
-            self.pickerOfFace.text = url.absoluteString
-            break;
+            self.pickerOfFace.text    = url.absoluteString
           case 4:
-            let url = info[UIImagePickerControllerReferenceURL] as NSURL
             self.pickerOfPicture.text = url.absoluteString
-            break;
           default:
             println("指定されたpicker以外からのアクセスがあった")
-            break
         }
         
         picker.dismissViewControllerAnimated(true, completion: nil)
