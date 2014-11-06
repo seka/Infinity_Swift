@@ -30,11 +30,26 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         self.pickerOfMovie.delegate      = self
         self.pickerOfFace.delegate       = self
         self.pickerOfPicture.delegate    = self
- }
+    }
     
     @IBAction func registUserInfo(sender: UIButton) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let uuid = NSUUID().UUIDString
+        var dict = [
+            "userName"    : self.textFieldOfUserName.text
+            , "nickName"  : self.textFieldOfNickName.text
+            , "living"    : self.textFieldOfLiving.text
+            , "message"   : self.textFieldOfMessage.text
+            , "ennegram"  : self.textFieldOfEnneagram.text
+            , "themeColor": self.pickerOfThemeColor.text
+            , "movie"     : self.pickerOfMovie.text
+            , "face"      : self.pickerOfFace.text
+            , "picture"   : self.pickerOfPicture.text
+        ]
+        
+        defaults.setObject(dict, forKey: uuid)
+        defaults.synchronize()
     }
-
     
     @IBAction func goBack(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
@@ -51,7 +66,7 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         }
         
         var imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
+        imagePicker.delegate      = self
         imagePicker.sourceType    = UIImagePickerControllerSourceType.SavedPhotosAlbum
         imagePicker.allowsEditing = false
         imagePicker.view.tag      = pickerId
@@ -65,9 +80,12 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    func themeColorPicker(picker: ThemeColorPicker, themeColor: UIColor) {
-        var hexColor = picker.HSVtoHexString(themeColor) as NSString
-        self.pickerOfThemeColor.text = hexColor
+    func themeColorPicker(picker: ThemeColorPicker, themeColor: UIColor?) {
+        if ((themeColor) != nil){
+            var hexColor = picker.HSVtoHexString(themeColor!) as NSString
+            self.pickerOfThemeColor.text = hexColor
+        }
+        
         picker.removeFromSuperview()
     }
     

@@ -9,16 +9,16 @@
 import UIKit
 
 protocol ThemeColorPickerDelegate {
-    func themeColorPicker(picker: ThemeColorPicker, themeColor: UIColor)
+    func themeColorPicker(picker: ThemeColorPicker, themeColor: UIColor?)
 }
 
 class ThemeColorPicker: UIView {
     
     var delegate: AddUserViewController! = nil
     
-    var colors     = NSMutableArray()
-    var themeColor = UIColor()
-    var selected   = UIButton()
+    var colors               = NSMutableArray()
+    var themeColor: UIColor? = nil
+    var selected             = UIButton()
     
     /**
     * setThemeColor
@@ -32,7 +32,7 @@ class ThemeColorPicker: UIView {
     * getThemeColor
     * returns: self.themeColor
     */
-    func getThemeColor() -> UIColor {
+    func getThemeColor() -> UIColor? {
         return self.themeColor
     }
     
@@ -47,9 +47,8 @@ class ThemeColorPicker: UIView {
         var r = NSString(format:"%02X", NSInteger(components[0] * 255))
         var g = NSString(format:"%02X", NSInteger(components[1] * 255))
         var b = NSString(format:"%02X", NSInteger(components[2] * 255))
-        var hex = "\(r)\(g)\(b)"
         
-        return hex
+        return "\(r)\(g)\(b)"
     }
     
     /**
@@ -116,7 +115,7 @@ class ThemeColorPicker: UIView {
     * x, y座標を用いて、HSV形式のUIColorを作成する
     * param  : x
     * param  : y
-    
+    * 
     * returns: HSV形式のUIColor
     */
     func createHSVColor(x: CGFloat, y: CGFloat) -> UIColor {
@@ -149,7 +148,7 @@ class ThemeColorPicker: UIView {
     * param: sender 決定ボタン
     */
     func decideThemeColor(sender: UIButton) {
-        var color = getThemeColor() as UIColor
+        var color = getThemeColor() as UIColor?
         self.delegate.themeColorPicker(self, themeColor: color)
     }
 }
