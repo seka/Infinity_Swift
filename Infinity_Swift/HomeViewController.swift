@@ -8,14 +8,20 @@
 
 import UIKit
 import AssetsLibrary
+import AVFoundation
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
-    
+
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    var audioPlayer: AVAudioPlayer! = AVAudioPlayer()
     
     // 次のページへ渡すユーザ情報
     var selectedUserId = NSString()
-    var userIds        = NSMutableArray()
+    
+    // NSUserDefaultsから取得するユーザ情報
+    var userIds = NSMutableArray()
+    var colors  = NSMutableArray()
     
     let imageWidth :CGFloat	= 210
     let imageHeight:CGFloat = 105
@@ -53,6 +59,17 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         self.scrollView.delegate = self
+        
+        // オーディオプレイヤーの用意
+        var mainBundle = NSBundle.mainBundle()
+        var filePath   = mainBundle.pathForResource("bgm", ofType: "wav")
+        var fileURL    = NSURL(fileURLWithPath: filePath!)
+        self.audioPlayer = AVAudioPlayer(contentsOfURL: fileURL, error: nil)
+        
+        self.audioPlayer.numberOfLoops = -1;
+        
+        self.audioPlayer.prepareToPlay()
+        self.audioPlayer.play()
     }
     
     /**
@@ -62,6 +79,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool) {
         self.selectedUserId   = NSString()
         self.userIds          = NSMutableArray()
+        self.colors           = NSMutableArray()
         self.images           = NSMutableArray()
         self.contentsOfScroll = NSMutableArray()
         self.leftImageIndex   = 0
@@ -87,10 +105,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         // assetLibraryの取得を同期にするためのスレッド
         var qGlobal: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        var count = 0
         
+        var count = 0
         for (key, value) in dicts {
             self.userIds.addObject(key)
+            self.colors.addObject(value["themeColor"] as NSString)
             
             var btn = UIButton()
             btn.frame = CGRectMake(32, 320 + CGFloat(30 * count), 110, 30)
