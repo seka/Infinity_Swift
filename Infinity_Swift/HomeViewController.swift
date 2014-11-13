@@ -7,26 +7,35 @@
 //
 
 import UIKit
+import AssetsLibrary
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    struct TestUser {
-        var id = 1
-        var userName = "Sekaryo Shin"
-        var nickName = "ゆるふわ草食系男子"
-        var live = "Okinawa"
-        var keywords = ["guitar", "programing", "coffeescript"]
+    // 次のページで利用するためのユーザ情報
+    struct User {
+        var id       : NSString?
+        var userName : NSString?
+        var nickName : NSString?
+        var living   : NSString?
+        var message  : NSString?
     }
     
-    let testImagesName = [
-            "foto_tomari_s.png"
-            , "foto_angie_s.png"
-            , "foto_sekaryo_s.png"
-            , "foto_ogata_s.png"
-            , "foto_kikuchi_s.png"
-        ]
+    var selectedUser = User(
+        id: nil
+        , userName: nil
+        , nickName: nil
+        , living  : nil
+        , message : nil
+    )
+    
+    // ユーザデータの管理（本当は構造体にしてまとめたいけど、構造体を配列に入れられなかった... orz）
+    var userIds   = NSMutableArray()
+    var userNames = NSMutableArray()
+    var nickNames = NSMutableArray()
+    var livings   = NSMutableArray()
+    var messages  = NSMutableArray()
     
     // 左に移動したか右に移動したかを判別するためのステータス
     enum ScrollDirection {
@@ -41,7 +50,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     let imageWidth :CGFloat	= 210
     let imageHeight:CGFloat = 105
     
-    // スクロール数の限界値（擬似的に無限スクロールしているように見せかけている）
+    // スクロール数の限界値（この繰り返し回数の中で擬似的に無限スクロールしているように見せかけている）
     let maxScrollableImages = 10000
     
     // 画面に映る最も左端の画像のインデックス
@@ -66,28 +75,83 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         
         scrollView.delegate = self
-
-        for (var i = 0; i < self.testImagesName.count; i++){
-            var image = UIImage()
-            image = UIImage(named: self.testImagesName[i])!
-            
-            self.images.addObject(image)
-        }
- 
-        maxDisplayViewNum = self.images.count
-        
-        leftViewIndex  = 0
-        rightViewIndex = maxDisplayViewNum - 1
-        
-        self.updateScrollViewSetting()
     }
     
     /**
     *  viewWillAppear
-    *  画面が描画される度に実行される、各種変数などの初期化処理に
+    *  画面が描画される度に実行される、各種変数などの初期化処理を呼び出す
     */
     override func viewWillAppear(animated: Bool) {
         self.animated = false
+        
+        self.initContents()
+        self.updateScrollViewSetting()
+    }
+    
+    
+    /**
+    *  initContents
+    *  NSUserDefaultsに格納された情報を基にユーザ情報を組み立てる
+    */
+    func initContents() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var appName = NSBundle.mainBundle().bundleIdentifier
+        var dicts   = defaults.persistentDomainForName(appName!) as NSDictionary!
+        
+        maxDisplayViewNum = dicts.count
+        
+        leftViewIndex  = 0
+        rightViewIndex = maxDisplayViewNum - 1
+        
+        // assetLibraryの取得を同期にするためのスレッド
+        var qGlobal: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+ 
+        for (key, value) in dicts {
+            self.userIds.addObject(key)
+            self.userNames.addObject(value["userName"] as NSString!)
+            self.nickNames.addObject(value["nickName"] as NSString!)
+            self.livings.addObject(value["living"] as NSString!)
+            self.messages.addObject(value["message"] as NSString!)
+            
+            // assetLibraryの処理が非同期であるため、同期処理を行うように変更
+            var semaphore = dispatch_semaphore_create(0)
+            dispatch_async(self.qGlobal, {
+                var strPath = value["face"] as NSString!
+                var facePath = NSURL(string: strPath)
+                self.lodingPhotoContent(facePath!, semaphore: semaphore)
+            })
+            // assetLibraryのcallbackを待っている状態
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+ 
+        }
+   }
+    
+    /**
+    * lodingPhotoContent
+    * photoContetntsをAssetsから読み出す
+    */
+    func lodingPhotoContent(path: NSURL!, semaphore: dispatch_semaphore_t) {
+        let assetLibrary = ALAssetsLibrary()
+        assetLibrary.assetForURL(
+            path
+            , resultBlock: {
+                (asset: ALAsset!) in
+                if (asset == nil){
+                    return
+                }
+                
+                // 普通の画像を取得するとメモリ的な理由でアプリが落ちてしまうようなので、サムネイル画像を取得
+                let image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
+                self.images.addObject(image!)
+                
+                // 待ち状態の解除
+                dispatch_semaphore_signal(semaphore);
+            }
+            , failureBlock: {
+                (error: NSError!) in
+                println("Error!\(error)")
+            }
+        )
     }
     
     /**
@@ -95,6 +159,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * スクロールバーに関する初期化処理
     */
     func updateScrollViewSetting() {
+        
         // スクロールバーのサイズを設定
         var contentSize = CGSizeMake(0, imageHeight)
         contentSize.width = imageWidth * CGFloat(self.images.count * maxScrollableImages)
@@ -200,13 +265,22 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: btn タップされたボタンオブジェクト
     */
     func selectedButton(btn: UIButton!) {
-        
         if (animated){
             return
         }
         
         animated = true
         
+        var index = btn.tag
+        self.selectedUser = User(
+            id: self.userIds[index]           as? NSString
+            , userName: self.userNames[index] as? NSString
+            , nickName: self.nickNames[index] as? NSString
+            , living  : self.livings[index]   as? NSString
+            , message : self.messages[index]  as? NSString
+        )
+        
+        // タップされたボタンに軽いアニメーションを適用する
         var animation = CABasicAnimation(keyPath:"position")
         animation.duration    = 0.1
         animation.repeatCount = 3
@@ -236,19 +310,15 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: sender
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if (segue.identifier != "ProfileForSegue"){
            return
         }
         
-        var testUser = TestUser()
-       
         var vc = segue.destinationViewController as ProfileViewController
-        vc.id       = testUser.id
-        vc.userName = testUser.userName
-        vc.nickName = testUser.nickName
-        vc.live     = testUser.live
-        vc.keywards = testUser.keywords
+        vc.id       = self.selectedUser.id!
+        vc.userName = self.selectedUser.userName!
+        vc.nickName = self.selectedUser.nickName!
+        vc.live     = self.selectedUser.living!
     }
  
     /**

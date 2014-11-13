@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var labelOfEnneagram : UILabel!
     
     // 前のページから受け継ぐ変数
-    var id       = NSInteger()
+    var id       = NSString()
     var userName = NSString()
     var nickName = NSString()
     var live     = NSString()
