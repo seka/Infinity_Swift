@@ -12,6 +12,7 @@ import AVFoundation
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet var themeColorLabels: [UILabel]!
     @IBOutlet weak var scrollView: UIScrollView!
     
     var audioPlayer: AVAudioPlayer! = AVAudioPlayer()
@@ -36,6 +37,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     // 画面に映る最も左端の画像のインデックス
     var leftImageIndex:NSInteger = 0
+    
+    // 画面に映る中心の画像のインデックス(テーマカラーの変更にのみ利用)
+    var centerImageIndex:NSInteger = 1
     
     // 左に移動したか右に移動したかを判別するためのステータス
     enum ScrollDirection {
@@ -83,6 +87,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.images           = NSMutableArray()
         self.contentsOfScroll = NSMutableArray()
         self.leftImageIndex   = 0
+        self.centerImageIndex = 1
         self.animated         = false
         
         self.initContents()
@@ -107,16 +112,25 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         var qGlobal: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         
         var count = 0
-        for (key, value) in dicts {
+        for (key, dict) in dicts {
             self.userIds.addObject(key)
-            self.colors.addObject(value["themeColor"] as NSString)
             
+            let scanner = NSScanner(string: dict["themeColor"] as NSString)
+            var hexValue: CUnsignedLongLong = 0
+            if scanner.scanHexLongLong(&hexValue) {
+                var red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
+                var green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
+                var blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
+                self.colors.addObject(UIColor(red:red, green:green, blue:blue, alpha:1.0))
+            }
+            
+            // 左端に表示するボタン
             var btn = UIButton()
             btn.frame = CGRectMake(32, 320 + CGFloat(30 * count), 110, 30)
             btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             btn.tag = count++
             
-            var userName = value["userName"] as NSString!
+            var userName = dict["userName"] as NSString!
             btn.setTitle(userName, forState: .Normal)
             btn.setTitleColor(UIColor.blueColor(), forState: .Normal)
             btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
@@ -125,7 +139,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             // assetLibraryの処理が非同期であるため、同期処理を行うように変更
             var semaphore = dispatch_semaphore_create(0)
             dispatch_async(qGlobal, {
-                var strPath = value["face"] as NSString!
+                var strPath = dict["face"] as NSString!
                 var facePath = NSURL(string: strPath)
                 self.lodingPhotoContent(facePath!, semaphore: semaphore)
             })
@@ -195,9 +209,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             self.scrollView.addSubview(btn)
         }
         
-        // UIScrollViewの可視領域の左端
-        self.leftImageIndex = 0
-        
         // ScrollViewへの初期設定
         self.scrollView.contentOffset = contentOffSet
         self.scrollView.contentSize   = contentSize
@@ -261,9 +272,25 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         // 画面に映る最も左のインデックスを更新
         self.leftImageIndex += direction
         
+        // 画面に映る最も左のインデックスを更新
+        self.centerImageIndex = self.addImageIndex(self.centerImageIndex, incremental: direction)
+        self.changeThemeColor(self.centerImageIndex)
+        
         // 画面外の両端の画像のインデックスを更新
         self.leftViewIndex  = self.addImageIndex(self.leftViewIndex , incremental: direction)
         self.rightViewIndex = self.addImageIndex(self.rightViewIndex, incremental: direction)
+    }
+    
+    /**
+    * changeThemeColor
+    * Outletで登録されたLabelの背景色を変更する
+    *
+    * param: index 中心に表示されている画像のインデックス
+    */
+    func changeThemeColor(index: NSInteger) {
+        for label in self.themeColorLabels {
+            label.backgroundColor = self.colors[index] as? UIColor
+        }
     }
     
     /**
