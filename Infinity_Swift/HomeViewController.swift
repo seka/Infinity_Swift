@@ -13,29 +13,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    // 次のページで利用するためのユーザ情報
-    struct User {
-        var id       : NSString?
-        var userName : NSString?
-        var nickName : NSString?
-        var living   : NSString?
-        var message  : NSString?
-    }
-    
-    var selectedUser = User(
-        id: nil
-        , userName: nil
-        , nickName: nil
-        , living  : nil
-        , message : nil
-    )
-    
-    // ユーザデータの管理（本当は構造体にしてまとめたいけど、構造体を配列に入れられなかった... orz）
-    var userIds   = NSMutableArray()
-    var userNames = NSMutableArray()
-    var nickNames = NSMutableArray()
-    var livings   = NSMutableArray()
-    var messages  = NSMutableArray()
+   
+    // 次のページへ渡すユーザ情報
+    var selectedUserId = NSString()
+    var userIds        = NSMutableArray()
     
     // 左に移動したか右に移動したかを判別するためのステータス
     enum ScrollDirection {
@@ -88,7 +69,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.updateScrollViewSetting()
     }
     
-    
     /**
     *  initContents
     *  NSUserDefaultsに格納された情報を基にユーザ情報を組み立てる
@@ -108,14 +88,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
  
         for (key, value) in dicts {
             self.userIds.addObject(key)
-            self.userNames.addObject(value["userName"] as NSString!)
-            self.nickNames.addObject(value["nickName"] as NSString!)
-            self.livings.addObject(value["living"] as NSString!)
-            self.messages.addObject(value["message"] as NSString!)
-            
+           
             // assetLibraryの処理が非同期であるため、同期処理を行うように変更
             var semaphore = dispatch_semaphore_create(0)
-            dispatch_async(self.qGlobal, {
+            dispatch_async(qGlobal, {
                 var strPath = value["face"] as NSString!
                 var facePath = NSURL(string: strPath)
                 self.lodingPhotoContent(facePath!, semaphore: semaphore)
@@ -269,18 +245,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             return
         }
         
-        animated = true
-        
         var index = btn.tag
-        self.selectedUser = User(
-            id: self.userIds[index]           as? NSString
-            , userName: self.userNames[index] as? NSString
-            , nickName: self.nickNames[index] as? NSString
-            , living  : self.livings[index]   as? NSString
-            , message : self.messages[index]  as? NSString
-        )
+        self.selectedUserId = self.userIds[index] as NSString
         
         // タップされたボタンに軽いアニメーションを適用する
+        animated = true
         var animation = CABasicAnimation(keyPath:"position")
         animation.duration    = 0.1
         animation.repeatCount = 3
@@ -315,10 +284,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         }
         
         var vc = segue.destinationViewController as ProfileViewController
-        vc.id       = self.selectedUser.id!
-        vc.userName = self.selectedUser.userName!
-        vc.nickName = self.selectedUser.nickName!
-        vc.live     = self.selectedUser.living!
+        vc.userId = self.selectedUserId
     }
  
     /**

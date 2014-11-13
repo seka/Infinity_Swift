@@ -26,20 +26,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var labelOfEnneagram : UILabel!
     
     // 前のページから受け継ぐ変数
-    var id       = NSString()
-    var userName = NSString()
-    var nickName = NSString()
-    var live     = NSString()
-    var message  = NSString()
+    var userId = NSString()
     var themeColor = UIColor()
-    var faceImage  = UIImage()
     
     // UIScrollViewのスクロールサイズを指定
     let maxScrollSize: CGFloat = 2656
     
     // 動画再生に必要な変数（Assetを通してしかアクセスできないため）
-    var moviePath = NSURL()
+    var assetUrlOfMovie = NSURL()
+    var moviePath       = NSURL()
     
+    // ムードボードに必要な変数（Assetを通してしかアクセスできないため）
+    var assetUrlOfPict = NSURL()
+ 
     /**
     *  viewDidLoad
     *  画面が描画される際に1度だけ実行される、各種変数などの初期化処理
@@ -50,7 +49,7 @@ class ProfileViewController: UIViewController {
         
         var contentSize = CGSizeMake(maxScrollSize, 350)
         self.scrollViewOfProfile.contentSize = contentSize
-    }
+   }
     
     /**
     *  viewWillAppear
@@ -68,20 +67,68 @@ class ProfileViewController: UIViewController {
         let rectangle = RectangleView(frame: CGRectMake(460, 0, 400, 285), color: self.themeColor)
         self.scrollViewOfProfile.addSubview(rectangle)
         self.scrollViewOfProfile.sendSubviewToBack(rectangle)
-    }
+   }
    
     /**
     * updateProfileContetns
     * xib上のUIの初期化を行う
     */
     func updateProfileContents() {
-        self.labelOfPageTitle.text = self.userName + "'s Profile"
-        self.imageOfProfile.image  = self.faceImage
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let dict = defaults.objectForKey(self.userId) as NSDictionary
+        
+        self.labelOfPageTitle.text = dict["userName"] as NSString + "'s Profile"
+        self.labelOfName.text      = dict["userName"] as NSString
+        self.labelOfNickName.text  = dict["nickName"] as NSString
+        self.labelOfMessage.text   = dict["message"]  as NSString
+        self.labelOfEnneagram.text = "Enneagram " + (dict["ennegram"] as NSString)
+        self.labelOfLive.text      = "MADE IN "   + (dict["living"]   as NSString)
         self.labelOfJob.text       = "ENGINEER"
-        self.labelOfName.text      = self.userName
-        self.labelOfNickName.text  = self.nickName
-        self.labelOfLive.text      = "MADE IN " + self.live
-        self.themeColor            = .redColor()
+        
+        self.assetUrlOfMovie = NSURL(string: dict["movie"]   as NSString)!
+        self.assetUrlOfPict  = NSURL(string: dict["picture"] as NSString)!
+        
+        let scanner = NSScanner(string: dict["themeColor"] as NSString)
+        var hexValue: CUnsignedLongLong = 0
+        if scanner.scanHexLongLong(&hexValue) {
+            var red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
+            var green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
+            var blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
+            self.themeColor = UIColor(red:red, green:green, blue:blue, alpha:1.0)
+        }
+
+        self.accessForAssetURL(NSURL(string: dict["face"] as NSString)!, {
+            (asset: ALAsset!) in
+            if (asset == nil){
+                return "Error"
+            }
+            let image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
+            self.imageOfProfile.image = image
+            
+            return "Success"
+        })
+    }
+    
+    /**
+    * updatePhotoContetns
+    * xib上のUIの初期化を行う
+    */
+    func updatePhotoContents() {
+        self.accessForAssetURL(assetUrlOfPict, {
+            (asset: ALAsset!) in
+            if (asset == nil){
+                return "Error"
+            }
+            let rep  = asset.defaultRepresentation()
+            
+            let contentsSize = CGRectMake(1720, 0, 800, 350)
+            let iv = UIImageView(frame: contentsSize)
+            iv.image = UIImage(CGImage: rep.fullResolutionImage().takeRetainedValue())
+            
+            self.scrollViewOfProfile.addSubview(iv)
+            
+            return "Success"
+        })
     }
     
     /**
@@ -89,35 +136,28 @@ class ProfileViewController: UIViewController {
     * xib上のUIの初期化を行う
     */
     func updateMovieContents() {
-        let assetLibrary = ALAssetsLibrary()
-        assetLibrary.assetForURL(
-            assetUrlOfMovie
-            , resultBlock: {
-                (asset: ALAsset!) in
-                if (asset == nil){
-                    return
-                }
-                
-                let rep  = asset.defaultRepresentation()
-                var iref = rep.fullResolutionImage().takeUnretainedValue()
-                
-                // playMovie関数で動画を再生する際に仕様
-                self.moviePath = rep.url()
-                
-                var btn = UIButton()
-                btn.frame = CGRectMake(860, 0, 800, 350)
-                
-                btn.setImage(UIImage(CGImage: iref), forState: .Normal)
-                btn.addTarget(self, action: "playMovie:", forControlEvents: .TouchUpInside)
+        self.accessForAssetURL(assetUrlOfMovie, {
+            (asset: ALAsset!) in
+            if (asset == nil){
+                return "Error"
+            }
+            let rep  = asset.defaultRepresentation()
+            var iref = rep.fullResolutionImage().takeUnretainedValue()
+            
+            // playMovie関数で動画を再生する際に使用
+            self.moviePath = rep.url()
+            
+            var btn = UIButton()
+            btn.frame = CGRectMake(860, 0, 800, 350)
+            
+            btn.setImage(UIImage(CGImage: iref), forState: .Normal)
+            btn.addTarget(self, action: "playMovie:", forControlEvents: .TouchUpInside)
 
-                self.scrollViewOfProfile.addSubview(btn)
-            }
-            , failureBlock: {
-                (error: NSError!) in
-                println("Error!\(error)")
-            }
-        )
-   }
+            self.scrollViewOfProfile.addSubview(btn)
+        
+            return "Success"
+        })
+    }
     
     /**
     * playMovie
@@ -156,33 +196,29 @@ class ProfileViewController: UIViewController {
     }
     
     /**
-    * updatePhotoContetns
-    * xib上のUIの初期化を行う
+    * accessForAssetURL
+    * assetsにアクセスするためのラッパー
+    *
+    * param: assetPath Asset://~から始まるPath
+    * param: callback
     */
-    func updatePhotoContents() {
+    func accessForAssetURL(assetPath: NSURL, callback: (ALAsset) -> AnyObject?) {
         let assetLibrary = ALAssetsLibrary()
         assetLibrary.assetForURL(
-            assetUrlOfPict
+            assetPath
             , resultBlock: {
                 (asset: ALAsset!) in
                 if (asset == nil){
                     return
                 }
-                
-                let rep  = asset.defaultRepresentation()
-                
-                let contentsSize = CGRectMake(1720, 0, 800, 350)
-                let iv = UIImageView(frame: contentsSize)
-                iv.image = UIImage(CGImage: rep.fullResolutionImage().takeRetainedValue())
-                
-                self.scrollViewOfProfile.addSubview(iv)
+                callback(asset)
             }
             , failureBlock: {
                 (error: NSError!) in
                 println("Error!\(error)")
             }
         )
-   }
+    }
     
     /**
     * goProfile
