@@ -22,7 +22,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var labelOfName      : UILabel!
     @IBOutlet weak var labelOfNickName  : UILabel!
     @IBOutlet weak var labelOfLive      : UILabel!
-    @IBOutlet      var labelOfKeywords  : [UILabel]!
     @IBOutlet weak var labelOfMessage   : UILabel!
     @IBOutlet weak var labelOfEnneagram : UILabel!
     
@@ -31,18 +30,15 @@ class ProfileViewController: UIViewController {
     var userName = NSString()
     var nickName = NSString()
     var live     = NSString()
-    var keywards = NSArray()
+    var message  = NSString()
     var themeColor = UIColor()
+    var faceImage  = UIImage()
     
     // UIScrollViewのスクロールサイズを指定
     let maxScrollSize: CGFloat = 2656
     
     // 動画再生に必要な変数（Assetを通してしかアクセスできないため）
-    var assetUrlOfMovie = NSURL(string: "assets-library://asset/asset.mp4?id=363FB2BA-91B0-4B31-A439-93A88939B2B3&ext=mp4")
     var moviePath = NSURL()
-    
-    // ムードボードに必要な変数（Assetを通してしかアクセスできないため）
-    var assetUrlOfPict = NSURL(string: "assets-library://asset/asset.JPG?id=6E5438ED-9A8C-4ED0-9DEA-AB2D8F8A9360&ext=JPG")
     
     /**
     *  viewDidLoad
@@ -80,7 +76,7 @@ class ProfileViewController: UIViewController {
     */
     func updateProfileContents() {
         self.labelOfPageTitle.text = self.userName + "'s Profile"
-        self.imageOfProfile.image  = UIImage(named: "foto_angie_s")!
+        self.imageOfProfile.image  = self.faceImage
         self.labelOfJob.text       = "ENGINEER"
         self.labelOfName.text      = self.userName
         self.labelOfNickName.text  = self.nickName
