@@ -480,14 +480,6 @@
                                     <rect key="frame" x="43" y="36" width="41" height="57"/>
                                 </variation>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEMBERS_メンバー" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6e-Bl-s4E">
-                                <rect key="frame" x="42" y="294" width="100" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="37" y="294" width="100" height="21"/>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFv-cR-ixX">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -673,7 +665,6 @@
                                 <exclude reference="Elp-vg-pVC"/>
                                 <exclude reference="ikd-xu-m8T"/>
                                 <exclude reference="p8I-tX-UPT"/>
-                                <exclude reference="d6e-Bl-s4E"/>
                                 <exclude reference="IFv-cR-ixX"/>
                                 <exclude reference="5XV-ag-oVZ"/>
                                 <exclude reference="yCC-Rf-bfg"/>
@@ -692,7 +683,6 @@
                                 <include reference="Elp-vg-pVC"/>
                                 <include reference="ikd-xu-m8T"/>
                                 <include reference="p8I-tX-UPT"/>
-                                <include reference="d6e-Bl-s4E"/>
                                 <include reference="IFv-cR-ixX"/>
                                 <include reference="5XV-ag-oVZ"/>
                                 <include reference="yCC-Rf-bfg"/>

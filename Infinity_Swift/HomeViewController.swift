@@ -87,9 +87,21 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         // assetLibraryの取得を同期にするためのスレッド
         var qGlobal: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
- 
+        var count = 0
+        
         for (key, value) in dicts {
             self.userIds.addObject(key)
+            
+            var btn = UIButton()
+            btn.frame = CGRectMake(32, 320 + CGFloat(30 * count), 110, 30)
+            btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+            btn.tag = count++
+            
+            var userName = value["userName"] as NSString!
+            btn.setTitle(userName, forState: .Normal)
+            btn.setTitleColor(UIColor.blueColor(), forState: .Normal)
+            btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
+            self.view.addSubview(btn)
            
             // assetLibraryの処理が非同期であるため、同期処理を行うように変更
             var semaphore = dispatch_semaphore_create(0)
