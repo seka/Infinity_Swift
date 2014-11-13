@@ -13,10 +13,23 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-   
     // 次のページへ渡すユーザ情報
     var selectedUserId = NSString()
     var userIds        = NSMutableArray()
+    
+    let imageWidth :CGFloat	= 210
+    let imageHeight:CGFloat = 105
+    var images           = NSMutableArray()
+    var contentsOfScroll = NSMutableArray()
+ 
+    // 画像の表示数
+    var maxDisplayViewNum = 0
+   
+    // スクロール数の限界値（この繰り返し回数の中で擬似的に無限スクロールしているように見せかけている）
+    let maxScrollableImages = 10000
+    
+    // 画面に映る最も左端の画像のインデックス
+    var leftImageIndex:NSInteger = 0
     
     // 左に移動したか右に移動したかを判別するためのステータス
     enum ScrollDirection {
@@ -24,26 +37,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         case kScrollDirectionRight
     }
     
-    // 画像の表示数
-    var maxDisplayViewNum = 0
-    
-    // 画像のサイズ
-    let imageWidth :CGFloat	= 210
-    let imageHeight:CGFloat = 105
-    
-    // スクロール数の限界値（この繰り返し回数の中で擬似的に無限スクロールしているように見せかけている）
-    let maxScrollableImages = 10000
-    
-    // 画面に映る最も左端の画像のインデックス
-    var leftImageIndex:NSInteger = 0
-    
     // 画面外に待機している両端の画像のインデックス
     var leftViewIndex :NSInteger = 0
     var rightViewIndex:NSInteger = 0
-    
-    var images           = NSMutableArray()
-    var contentsOfScroll = NSMutableArray()
-    
+   
     // ボタンアニメーション用のフラグ
     var animated = false
     
@@ -55,7 +52,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         super.viewDidLoad()
         
-        scrollView.delegate = self
+        self.scrollView.delegate = self
     }
     
     /**
@@ -63,7 +60,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     *  画面が描画される度に実行される、各種変数などの初期化処理を呼び出す
     */
     override func viewWillAppear(animated: Bool) {
-        self.animated = false
+        self.selectedUserId   = NSString()
+        self.userIds          = NSMutableArray()
+        self.images           = NSMutableArray()
+        self.contentsOfScroll = NSMutableArray()
+        self.leftImageIndex   = 0
+        self.animated         = false
         
         self.initContents()
         self.updateScrollViewSetting()
@@ -78,10 +80,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         var appName = NSBundle.mainBundle().bundleIdentifier
         var dicts   = defaults.persistentDomainForName(appName!) as NSDictionary!
         
-        maxDisplayViewNum = dicts.count
+        self.maxDisplayViewNum = dicts.count
         
-        leftViewIndex  = 0
-        rightViewIndex = maxDisplayViewNum - 1
+        self.leftViewIndex  = 0
+        self.rightViewIndex = self.maxDisplayViewNum - 1
         
         // assetLibraryの取得を同期にするためのスレッド
         var qGlobal: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -96,11 +98,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
                 var facePath = NSURL(string: strPath)
                 self.lodingPhotoContent(facePath!, semaphore: semaphore)
             })
+            
             // assetLibraryのcallbackを待っている状態
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
- 
         }
-   }
+    }
     
     /**
     * lodingPhotoContent
@@ -135,7 +137,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * スクロールバーに関する初期化処理
     */
     func updateScrollViewSetting() {
-        
         // スクロールバーのサイズを設定
         var contentSize = CGSizeMake(0, imageHeight)
         contentSize.width = imageWidth * CGFloat(self.images.count * maxScrollableImages)
@@ -145,7 +146,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         contentOffSet.x = CGFloat(maxScrollableImages) * imageWidth
         
         // 画面の最も左に表示されている画像のインデックス
-        leftImageIndex = 0
+        self.leftImageIndex = 0
         
         // 画像の初期位置の設定
         for (var i = 0; i < self.images.count; i++){
@@ -164,7 +165,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         }
         
         // UIScrollViewの可視領域の左端
-        leftImageIndex = 0
+        self.leftImageIndex = 0
         
         // ScrollViewへの初期設定
         self.scrollView.contentOffset = contentOffSet
@@ -179,8 +180,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: scrollView スクロールビュー
     */
     func scrollViewDidScroll(scrollView:UIScrollView) {
-        var currentIndex :NSInteger = NSInteger(scrollView.contentOffset.x / imageWidth)
-        var indexMovement:NSInteger = currentIndex - leftImageIndex
+        var currentIndex :NSInteger = NSInteger(self.scrollView.contentOffset.x / imageWidth)
+        var indexMovement:NSInteger = currentIndex - self.leftImageIndex
         
        	for (var i = 0; i < abs(indexMovement); i++) {
             if (indexMovement > 0){
@@ -201,7 +202,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * returns: リングバッファの添字
     */
     func addImageIndex(index:NSInteger, incremental:NSInteger) -> NSInteger {
-        return (index + incremental + maxDisplayViewNum) % maxDisplayViewNum
+        return (index + incremental + self.maxDisplayViewNum) % self.maxDisplayViewNum
     }
 
     /**
@@ -211,27 +212,27 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: scrollDirection 左に移動したのか、右に移動したのかを示すステータス変数
     */
     func scrollWithDirection(scrollDirection:ScrollDirection) {
-        var direction  :NSInteger = 0
-        var viewIndex  :NSInteger = 0
+        var direction :NSInteger = 0
+        var viewIndex :NSInteger = 0
         
         if (scrollDirection == ScrollDirection.kScrollDirectionLeft){
-            direction  = -1
-            viewIndex  = rightViewIndex
+            direction = -1
+            viewIndex = self.rightViewIndex
         }
         else if (scrollDirection == ScrollDirection.kScrollDirectionRight){
-            direction  = 1
-            viewIndex  = leftViewIndex
+            direction = 1
+            viewIndex = self.leftViewIndex
         }
         
         var btn = self.contentsOfScroll[viewIndex] as UIButton
         btn.frame.origin.x += imageWidth * CGFloat(self.images.count * direction)
         
         // 画面に映る最も左のインデックスを更新
-        leftImageIndex += direction
+        self.leftImageIndex += direction
         
         // 画面外の両端の画像のインデックスを更新
-        leftViewIndex  = self.addImageIndex(leftViewIndex , incremental: direction)
-        rightViewIndex = self.addImageIndex(rightViewIndex, incremental: direction)
+        self.leftViewIndex  = self.addImageIndex(self.leftViewIndex , incremental: direction)
+        self.rightViewIndex = self.addImageIndex(self.rightViewIndex, incremental: direction)
     }
     
     /**
