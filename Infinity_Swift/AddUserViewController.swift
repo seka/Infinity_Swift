@@ -44,6 +44,17 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
     * param: sender Regist_登録ボタン
     */
     @IBAction func registUserInfo(sender: UIButton) {
+        var alert = UIAlertView()
+        
+        if (self.textFieldOfUserName.text == "" || self.textFieldOfNickName.text == "" || self.textFieldOfLiving.text == ""
+        || self.textFieldOfMessage.text == "" || self.textFieldOfEnneagram.text == "" || self.pickerOfThemeColor.text == ""
+        || self.pickerOfMovie.text == "" || self.pickerOfFace.text == "" || self.pickerOfPicture.text == ""){
+            alert.message = "未設定の項目があります"
+            alert.addButtonWithTitle("OK")
+            alert.show()
+            return
+        }
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         let uuid = NSUUID().UUIDString
         var dict = [
@@ -60,6 +71,10 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         
         defaults.setObject(dict, forKey: uuid)
         defaults.synchronize()
+        
+        alert.message = "登録が完了しました！"
+        alert.addButtonWithTitle("OK")
+        alert.show()
     }
     
     /**

@@ -100,10 +100,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     */
     func initContents() {
         let defaults = NSUserDefaults.standardUserDefaults()
-        var appName = NSBundle.mainBundle().bundleIdentifier
-        var dicts   = defaults.persistentDomainForName(appName!) as NSDictionary!
+        var appName  = NSBundle.mainBundle().bundleIdentifier
+        var dicts    = defaults.persistentDomainForName(appName!) as NSDictionary?
+
+        if (dicts? == nil){
+            return
+        }
         
-        self.maxDisplayViewNum = dicts.count
+        self.maxDisplayViewNum = dicts!.count
         
         self.leftViewIndex  = 0
         self.rightViewIndex = self.maxDisplayViewNum - 1
@@ -112,7 +116,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         var qGlobal: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         
         var count = 0
-        for (key, dict) in dicts {
+        for (key, dict) in dicts! {
             self.userIds.addObject(key)
             
             let scanner = NSScanner(string: dict["themeColor"] as NSString)
@@ -182,6 +186,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * スクロールバーに関する初期化処理
     */
     func updateScrollViewSetting() {
+        
+        if (self.images.count < 1){
+            return
+        }
+        
         // スクロールバーのサイズを設定
         var contentSize = CGSizeMake(0, imageHeight)
         contentSize.width = imageWidth * CGFloat(self.images.count * maxScrollableImages)
@@ -269,10 +278,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         var btn = self.contentsOfScroll[viewIndex] as UIButton
         btn.frame.origin.x += imageWidth * CGFloat(self.images.count * direction)
         
-        // 画面に映る最も左のインデックスを更新
+        // 画面に映る最も左の画像のインデックスを更新
         self.leftImageIndex += direction
         
-        // 画面に映る最も左のインデックスを更新
+        // 画面に映る中心の画像のインデックスを更新
         self.centerImageIndex = self.addImageIndex(self.centerImageIndex, incremental: direction)
         self.changeThemeColor(self.centerImageIndex)
         

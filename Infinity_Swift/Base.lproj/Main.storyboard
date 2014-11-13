@@ -1096,10 +1096,10 @@
             </objects>
             <point key="canvasLocation" x="1194.75" y="-495.75"/>
         </scene>
-        <!--View Controller-->
+        <!--Delete User View Controller-->
         <scene sceneID="emj-kE-D7G">
             <objects>
-                <viewController id="F6c-nO-vNK" sceneMemberID="viewController">
+                <viewController id="F6c-nO-vNK" customClass="DeleteUserViewController" customModule="Infinity_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OBa-2b-CNF"/>
                         <viewControllerLayoutGuide type="bottom" id="Hjt-Dw-Elm"/>
