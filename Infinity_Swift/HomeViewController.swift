@@ -13,8 +13,8 @@ import AVFoundation
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet var themeColorLabels : [UILabel]!
-    @IBOutlet weak var faceImageOfscrollView  : UIScrollView!
-    @IBOutlet weak var memberLabelOfScrollView: UIScrollView!
+    @IBOutlet weak var scrollViewOfFaceImages  : UIScrollView!
+    @IBOutlet weak var scrollViewOfMemberList: UIScrollView!
     
     var audioPlayer     : AVAudioPlayer!
     var userNameButtons = NSMutableArray()
@@ -64,7 +64,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         super.viewDidLoad()
         
-        self.faceImageOfscrollView.delegate = self
+        self.scrollViewOfFaceImages.delegate = self
         
         // オーディオプレイヤーの用意
         var mainBundle = NSBundle.mainBundle()
@@ -92,11 +92,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.centerImageIndex = 1
         self.animated         = false
         
-        for view in self.faceImageOfscrollView.subviews {
+        for view in self.scrollViewOfFaceImages.subviews {
             view.removeFromSuperview()
         }
         
-        for view in self.memberLabelOfScrollView.subviews {
+        for view in self.scrollViewOfMemberList.subviews {
             view.removeFromSuperview()
         }
         
@@ -166,7 +166,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         btn.setTitleColor(UIColor.blueColor(), forState: .Normal)
         btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
         
-        self.memberLabelOfScrollView.addSubview(btn)
+        self.scrollViewOfMemberList.addSubview(btn)
     }
     
     /**
@@ -221,6 +221,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     */
     func updateScrollViewSetting() {
         if (self.images.count < 1){
+            self.scrollViewOfFaceImages.contentSize = CGSizeMake(0, 0)
             return
         }
         
@@ -236,7 +237,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.leftImageIndex = 0
         
         // 画像の初期位置の設定
-        for (var i = 0; i < self.images.count; i++){
+        for i in 0 ..< self.images.count {
             let image = self.images[i] as UIImage
             
             let btn = UIButton()
@@ -248,13 +249,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             self.contentsOfScroll.addObject(btn)
             
-            self.faceImageOfscrollView.addSubview(btn)
+            self.scrollViewOfFaceImages.addSubview(btn)
         }
         
         // ScrollViewへの初期設定
-        self.faceImageOfscrollView.contentOffset = contentOffSet
-        self.faceImageOfscrollView.contentSize   = contentSize
-        self.faceImageOfscrollView.showsHorizontalScrollIndicator = false
+        self.scrollViewOfFaceImages.contentOffset = contentOffSet
+        self.scrollViewOfFaceImages.contentSize   = contentSize
+        self.scrollViewOfFaceImages.showsHorizontalScrollIndicator = false
     }
     
     /**
@@ -267,7 +268,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         let currentIndex  = NSInteger(scrollView.contentOffset.x / imageWidth)
         let indexMovement = currentIndex - self.leftImageIndex
         
-       	for (var i = 0; i < abs(indexMovement); i++){
+       	for i in 0 ..< abs(indexMovement) {
             if (indexMovement > 0){
                 self.scrollWithDirection(ScrollDirection.kScrollDirectionRight)
             }

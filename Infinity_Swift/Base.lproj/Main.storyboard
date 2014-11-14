@@ -69,6 +69,12 @@
                                     <rect key="frame" x="545" y="54" width="51" height="21"/>
                                 </variation>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="320" translatesAutoresizingMaskIntoConstraints="NO" id="f6N-yk-tGh">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="323" width="110" height="318"/>
+                                </variation>
+                            </scrollView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bt_share.png" translatesAutoresizingMaskIntoConstraints="NO" id="qVd-Ty-OPY">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -300,12 +306,6 @@
                                     <segue destination="A2S-5J-0Hs" kind="presentation" id="PGW-rv-huO"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="320" translatesAutoresizingMaskIntoConstraints="NO" id="f6N-yk-tGh">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="32" y="323" width="110" height="318"/>
-                                </variation>
-                            </scrollView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="625" placeholderIntrinsicHeight="130" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <inset key="scrollIndicatorInsets" minX="100" minY="100" maxX="100" maxY="100"/>
@@ -324,6 +324,7 @@
                                 <exclude reference="fKz-ZK-LfF"/>
                                 <exclude reference="Km7-MJ-a9J"/>
                                 <exclude reference="LzJ-ru-qUd"/>
+                                <exclude reference="f6N-yk-tGh"/>
                                 <exclude reference="qVd-Ty-OPY"/>
                                 <exclude reference="BYz-Ih-LRN"/>
                                 <exclude reference="yNP-Od-i1h"/>
@@ -354,7 +355,6 @@
                                 <exclude reference="FdF-w9-zcb"/>
                                 <exclude reference="NQa-Rh-xgd"/>
                                 <exclude reference="LWN-vW-IcI"/>
-                                <exclude reference="f6N-yk-tGh"/>
                                 <exclude reference="oXX-Kn-ESz"/>
                             </mask>
                         </variation>
@@ -371,6 +371,7 @@
                                 <include reference="fKz-ZK-LfF"/>
                                 <include reference="Km7-MJ-a9J"/>
                                 <include reference="LzJ-ru-qUd"/>
+                                <include reference="f6N-yk-tGh"/>
                                 <include reference="qVd-Ty-OPY"/>
                                 <include reference="BYz-Ih-LRN"/>
                                 <include reference="yNP-Od-i1h"/>
@@ -401,7 +402,6 @@
                                 <include reference="FdF-w9-zcb"/>
                                 <include reference="NQa-Rh-xgd"/>
                                 <include reference="LWN-vW-IcI"/>
-                                <include reference="f6N-yk-tGh"/>
                                 <include reference="oXX-Kn-ESz"/>
                             </mask>
                         </variation>
@@ -410,8 +410,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="728"/>
                     <connections>
-                        <outlet property="faceImageOfscrollView" destination="oXX-Kn-ESz" id="Yde-97-pne"/>
-                        <outlet property="memberLabelOfScrollView" destination="f6N-yk-tGh" id="Ln7-Cj-0Fe"/>
+                        <outlet property="scrollViewOfFaceImages" destination="oXX-Kn-ESz" id="Db9-1u-WHU"/>
+                        <outlet property="scrollViewOfMemberList" destination="f6N-yk-tGh" id="gd0-qC-P8r"/>
                         <outletCollection property="themeColorLabels" destination="AEp-qb-qoJ" collectionClass="NSMutableArray" id="jkJ-vM-HAz"/>
                         <outletCollection property="themeColorLabels" destination="UuL-NR-fy5" collectionClass="NSMutableArray" id="r6e-Ns-jD1"/>
                         <outletCollection property="themeColorLabels" destination="FdF-w9-zcb" collectionClass="NSMutableArray" id="B6M-CC-Mia"/>

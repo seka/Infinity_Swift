@@ -56,11 +56,6 @@ class ProfileViewController: UIViewController {
     *  画面が描画される度に実行される、各種変数などの初期化処理
     */
     override func viewWillAppear(animated: Bool) {
-        for view in self.scrollViewOfProfile.subviews {
-            view.removeFromSuperview()
-        }
-        
-        
         self.updateProfileContents()
         self.updateMovieContents()
         self.updatePhotoContents()
