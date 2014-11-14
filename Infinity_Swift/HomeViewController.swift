@@ -13,9 +13,11 @@ import AVFoundation
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet var themeColorLabels : [UILabel]!
-    @IBOutlet weak var scrollView  : UIScrollView!
+    @IBOutlet weak var faceImageOfscrollView  : UIScrollView!
+    @IBOutlet weak var memberLabelOfScrollView: UIScrollView!
     
-    var audioPlayer: AVAudioPlayer!
+    var audioPlayer     : AVAudioPlayer!
+    var userNameButtons = NSMutableArray()
     
     // 次のページへ渡すユーザ情報
     var selectedUserId = NSString()
@@ -62,7 +64,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         super.viewDidLoad()
         
-        self.scrollView.delegate = self
+        self.faceImageOfScrollView.delegate = self
         
         // オーディオプレイヤーの用意
         var mainBundle = NSBundle.mainBundle()
@@ -78,7 +80,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     /**
     *  viewWillAppear
-    *  画面が描画される度に実行される、各種変数などの初期化処理を呼び出す
+    *  画面が描画される度に実行される、各種変数などの初期化やページの準備を行う
     */
     override func viewWillAppear(animated: Bool) {
         self.selectedUserId   = NSString()
@@ -89,6 +91,14 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.leftImageIndex   = 0
         self.centerImageIndex = 1
         self.animated         = false
+        
+        for view in self.faceImageOfScrollView.subviews {
+            view.removeFromSuperview()
+        }
+        
+        for view in self.memberLabelOfScrollView.subviews {
+            view.removeFromSuperview()
+        }
         
         self.initContents()
         self.updateScrollViewSetting()
@@ -114,32 +124,17 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         // assetLibraryの取得を同期にするためのスレッド
         var qGlobal: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        
         var count = 0
+        
         for (key, dict) in dicts! {
             self.userIds.addObject(key)
             
-            let scanner = NSScanner(string: dict["themeColor"] as NSString)
-            var hexValue: CUnsignedLongLong = 0
-            if scanner.scanHexLongLong(&hexValue) {
-                let red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
-                let green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
-                let blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
-                self.colors.addObject(UIColor(red:red, green:green, blue:blue, alpha:1.0))
-            }
+            self.pushThemeColor(dict["themeColor"] as NSString)
             
-            // 左端に表示するボタン
-            let btn = UIButton()
-            btn.frame = CGRectMake(32, 320 + CGFloat(30 * count), 110, 30)
-            btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
-            btn.tag = count++
+            self.createSideBarButton(count, userName: dict["userName"] as NSString)
+            count++
             
-            let userName = dict["userName"] as NSString
-            btn.setTitle(userName, forState: .Normal)
-            btn.setTitleColor(UIColor.blueColor(), forState: .Normal)
-            btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
-            self.view.addSubview(btn)
-           
+            // 顔写真の用意
             // assetLibraryの処理が非同期であるため、同期処理を行うように変更
             let semaphore = dispatch_semaphore_create(0)
             dispatch_async(qGlobal, {
@@ -150,6 +145,45 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             // assetLibraryのcallbackを待っている状態
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        }
+    }
+    
+    /**
+    * createSideBarButton
+    * サイドバーに設置するメンバー名を作成し、設置する
+    *
+    * :param: index    ボタンのインデックス情報
+    * :param: userName ボタンに記述するユーザ名
+    */
+    func createSideBarButton(index: NSInteger, userName: NSString) {
+        let btn = UIButton()
+        btn.frame = CGRectMake(0, CGFloat(30 * index), 110, 30)
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        btn.tag = index
+        
+        let userName = userName
+        btn.setTitle(userName, forState: .Normal)
+        btn.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
+        
+        self.memberLabelOfScrollView.addSubview(btn)
+    }
+    
+    /**
+    * pushThemeColor
+    * 各ユーザに設定されたテーマカラーを配列に格納し、使用する準備を行う
+    *
+    * :param: colorCode
+    */
+    func pushThemeColor(colorCode: NSString) {
+        let scanner = NSScanner(string: colorCode)
+        var hexValue: CUnsignedLongLong = 0
+        
+        if (scanner.scanHexLongLong(&hexValue)){
+            let red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
+            let green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
+            let blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
+            self.colors.addObject(UIColor(red:red, green:green, blue:blue, alpha:1.0))
         }
     }
     
@@ -214,13 +248,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             self.contentsOfScroll.addObject(btn)
             
-            self.scrollView.addSubview(btn)
+            self.faceImageOfScrollView.addSubview(btn)
         }
         
         // ScrollViewへの初期設定
-        self.scrollView.contentOffset = contentOffSet
-        self.scrollView.contentSize   = contentSize
-        self.scrollView.showsHorizontalScrollIndicator = false
+        self.faceImageOfScrollView.contentOffset = contentOffSet
+        self.faceImageOfScrollView.contentSize   = contentSize
+        self.faceImageOfScrollView.showsHorizontalScrollIndicator = false
     }
     
     /**
@@ -229,11 +263,11 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     *
     * param: scrollView スクロールビュー
     */
-    func scrollViewDidScroll(scrollView:UIScrollView) {
-        let currentIndex  = NSInteger(self.scrollView.contentOffset.x / imageWidth)
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        let currentIndex  = NSInteger(scrollView.contentOffset.x / imageWidth)
         let indexMovement = currentIndex - self.leftImageIndex
         
-       	for (var i = 0; i < abs(indexMovement); i++) {
+       	for (var i = 0; i < abs(indexMovement); i++){
             if (indexMovement > 0){
                 self.scrollWithDirection(ScrollDirection.kScrollDirectionRight)
             }
@@ -251,7 +285,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: incremental スクロールした行番号
     * returns: リングバッファの添字
     */
-    func addImageIndex(index:NSInteger, incremental:NSInteger) -> NSInteger {
+    func addImageIndex(index: NSInteger, incremental: NSInteger) -> NSInteger {
         return (index + incremental + self.maxDisplayViewNum) % self.maxDisplayViewNum
     }
 
@@ -259,9 +293,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * scrollWithDirection
     * 画像の位置を更新する
     *
-    * param: scrollDirection 左に移動したのか、右に移動したのかを示すステータス変数
+    * param: scrollDirection 左に移動したのか、右に移動したのかを示すステータス
     */
-    func scrollWithDirection(scrollDirection:ScrollDirection) {
+    func scrollWithDirection(scrollDirection: ScrollDirection) {
         var direction = 0
         var viewIndex = 0
         
@@ -303,7 +337,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     
     /**
     * selectedButton
-    * ボタンをタップした際に呼び出されるイベント
+    * 顔写真をタップした際に呼び出されるイベント
     *
     * param: btn タップされたボタンオブジェクト
     */
@@ -326,6 +360,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         btn.layer.addAnimation(animation, forKey: "move-layer")
         
+        // Profileページへの遷移を行う
         NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("transitionProfilePage")
                                                   , userInfo: nil, repeats: false)
     }

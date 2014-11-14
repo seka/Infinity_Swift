@@ -300,11 +300,17 @@
                                     <segue destination="A2S-5J-0Hs" kind="presentation" id="PGW-rv-huO"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="320" translatesAutoresizingMaskIntoConstraints="NO" id="f6N-yk-tGh">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="32" y="323" width="110" height="318"/>
+                                </variation>
+                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="625" placeholderIntrinsicHeight="130" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXX-Kn-ESz">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <inset key="scrollIndicatorInsets" minX="100" minY="100" maxX="100" maxY="100"/>
                                 <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="258" y="276" width="625" height="126"/>
+                                    <rect key="frame" x="258" y="271" width="625" height="129"/>
                                 </variation>
                             </scrollView>
                         </subviews>
@@ -348,6 +354,7 @@
                                 <exclude reference="FdF-w9-zcb"/>
                                 <exclude reference="NQa-Rh-xgd"/>
                                 <exclude reference="LWN-vW-IcI"/>
+                                <exclude reference="f6N-yk-tGh"/>
                                 <exclude reference="oXX-Kn-ESz"/>
                             </mask>
                         </variation>
@@ -394,6 +401,7 @@
                                 <include reference="FdF-w9-zcb"/>
                                 <include reference="NQa-Rh-xgd"/>
                                 <include reference="LWN-vW-IcI"/>
+                                <include reference="f6N-yk-tGh"/>
                                 <include reference="oXX-Kn-ESz"/>
                             </mask>
                         </variation>
@@ -402,7 +410,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="728"/>
                     <connections>
-                        <outlet property="scrollView" destination="oXX-Kn-ESz" id="Vx9-tZ-zeK"/>
+                        <outlet property="faceImageOfscrollView" destination="oXX-Kn-ESz" id="Yde-97-pne"/>
+                        <outlet property="memberLabelOfScrollView" destination="f6N-yk-tGh" id="Ln7-Cj-0Fe"/>
                         <outletCollection property="themeColorLabels" destination="AEp-qb-qoJ" collectionClass="NSMutableArray" id="jkJ-vM-HAz"/>
                         <outletCollection property="themeColorLabels" destination="UuL-NR-fy5" collectionClass="NSMutableArray" id="r6e-Ns-jD1"/>
                         <outletCollection property="themeColorLabels" destination="FdF-w9-zcb" collectionClass="NSMutableArray" id="B6M-CC-Mia"/>

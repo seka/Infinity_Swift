@@ -23,7 +23,7 @@ class DeleteUserViewController: UIViewController {
     */
     override func viewWillAppear(animated: Bool) {
         self.accessForUserDefaults()
-        self.drawButtons()
+        self.createButtons()
     }
     
     /**
@@ -51,12 +51,12 @@ class DeleteUserViewController: UIViewController {
     }
     
     /**
-    * drawButtons
+    * createButtons
     * NSUserDefaultsの情報を基に、ボタンを作成する
     *
     * param: btn タップされたボタンオブジェクト
     */
-    func drawButtons() {
+    func createButtons() {
         if (self.userIds.count < 1 || self.userNames.count < 1){
             return
         }
@@ -74,7 +74,7 @@ class DeleteUserViewController: UIViewController {
 
             let scanner = NSScanner(string: self.colors[i] as NSString)
             var hexValue: CUnsignedLongLong = 0
-            if (scanner.scanHexLongLong(&hexValue)) {
+            if (scanner.scanHexLongLong(&hexValue)){
                 var red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
                 var green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
                 var blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
@@ -104,7 +104,7 @@ class DeleteUserViewController: UIViewController {
         defaults.synchronize()
         
         self.accessForUserDefaults()
-        self.drawButtons()
+        self.createButtons()
     }
     
     /**

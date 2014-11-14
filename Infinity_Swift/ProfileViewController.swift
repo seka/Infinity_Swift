@@ -56,6 +56,11 @@ class ProfileViewController: UIViewController {
     *  画面が描画される度に実行される、各種変数などの初期化処理
     */
     override func viewWillAppear(animated: Bool) {
+        for view in self.scrollViewOfProfile.subviews {
+            view.removeFromSuperview()
+        }
+        
+        
         self.updateProfileContents()
         self.updateMovieContents()
         self.updatePhotoContents()
@@ -157,10 +162,10 @@ class ProfileViewController: UIViewController {
     * param: sender
     */
     func playMovie(sender: UIButton) {
-        let mvc         = MPMoviePlayerViewController()
-        let vc          = mvc.moviePlayer
-        vc.contentURL   = self.moviePath
-        vc.scalingMode  = MPMovieScalingMode.Fill
+        let mvc        = MPMoviePlayerViewController()
+        let vc         = mvc.moviePlayer
+        vc.contentURL  = self.moviePath
+        vc.scalingMode = MPMovieScalingMode.Fill
         
         self.presentMoviePlayerViewControllerAnimated(mvc)
         
@@ -215,7 +220,7 @@ class ProfileViewController: UIViewController {
     /**
     * goProfile
     * プロフィールページへ移動する
-    * TODO: 下のやつとまとめて関数化できそう...?
+    * TODO: 下のやつとまとめて関数化できそう...
     *
     * param: sender
     */

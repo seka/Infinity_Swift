@@ -65,9 +65,9 @@ class ThemeColorPicker: UIView {
     * param: rect
     */
     override func drawRect(rect: CGRect) {
-        for i in 0...8 {
+        for i in 0 ... 8 {
             var pixelY = CGFloat(i) / 9
-            for j in 0...20 {
+            for j in 0 ... 20 {
                 var pixelX = CGFloat(j) / 19
                 
                 var color = self.createHSVColor(pixelX, y: pixelY) // 色を決定
