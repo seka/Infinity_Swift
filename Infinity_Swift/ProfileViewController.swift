@@ -12,7 +12,7 @@ import AssetsLibrary
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var scrollViewOfProfile: UIScrollView!
+    @IBOutlet weak var scrollViewOfProfile  : UIScrollView!
     @IBOutlet weak var imageViewOfPageCursor: UIImageView!
     
     // Insert xib
@@ -33,11 +33,11 @@ class ProfileViewController: UIViewController {
     let maxScrollSize: CGFloat = 2656
     
     // 動画再生に必要な変数（Assetを通してしかアクセスできないため）
-    var assetUrlOfMovie = NSURL()
-    var moviePath       = NSURL()
+    var assetUrlOfMovie : NSURL?
+    var moviePath       : NSURL?
     
     // ムードボードに必要な変数（Assetを通してしかアクセスできないため）
-    var assetUrlOfPict = NSURL()
+    var assetUrlOfPict : NSURL?
  
     /**
     *  viewDidLoad
@@ -85,24 +85,21 @@ class ProfileViewController: UIViewController {
         self.labelOfLive.text      = "MADE IN "   + (dict["living"]   as NSString)
         self.labelOfJob.text       = "ENGINEER"
         
-        self.assetUrlOfMovie = NSURL(string: dict["movie"]   as NSString)!
-        self.assetUrlOfPict  = NSURL(string: dict["picture"] as NSString)!
+        self.assetUrlOfMovie = NSURL(string: dict["movie"] as NSString)
+        self.assetUrlOfPict  = NSURL(string: dict["picture"] as NSString)
         
         let scanner = NSScanner(string: dict["themeColor"] as NSString)
         var hexValue: CUnsignedLongLong = 0
         if scanner.scanHexLongLong(&hexValue) {
             var red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
-            var green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
+            var green = CGFloat((hexValue & 0x00FF00) >>  8) / 255.0
             var blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
             self.themeColor = UIColor(red:red, green:green, blue:blue, alpha:1.0)
         }
 
         self.accessForAssetURL(NSURL(string: dict["face"] as NSString)!, {
             (asset: ALAsset!) in
-            if (asset == nil){
-                return "Error"
-            }
-            let image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
+            let image = UIImage(CGImage: asset!.thumbnail().takeUnretainedValue())
             self.imageOfProfile.image = image
             
             return "Success"
@@ -114,11 +111,8 @@ class ProfileViewController: UIViewController {
     * xib上のUIの初期化を行う
     */
     func updatePhotoContents() {
-        self.accessForAssetURL(assetUrlOfPict, {
+        self.accessForAssetURL(assetUrlOfPict!, {
             (asset: ALAsset!) in
-            if (asset == nil){
-                return "Error"
-            }
             let rep  = asset.defaultRepresentation()
             
             let contentsSize = CGRectMake(1720, 0, 800, 350)
@@ -136,11 +130,8 @@ class ProfileViewController: UIViewController {
     * xib上のUIの初期化を行う
     */
     func updateMovieContents() {
-        self.accessForAssetURL(assetUrlOfMovie, {
+        self.accessForAssetURL(assetUrlOfMovie!, {
             (asset: ALAsset!) in
-            if (asset == nil){
-                return "Error"
-            }
             let rep  = asset.defaultRepresentation()
             var iref = rep.fullResolutionImage().takeUnretainedValue()
             
@@ -176,6 +167,7 @@ class ProfileViewController: UIViewController {
         vc.setFullscreen(false, animated: true)
         vc.play()
         
+        // 動画再生が終了された時、endMovieを呼び出す
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("endMovie:")
             , name: MPMoviePlayerPlaybackDidFinishNotification, object: vc)
     }
@@ -207,11 +199,11 @@ class ProfileViewController: UIViewController {
         assetLibrary.assetForURL(
             assetPath
             , resultBlock: {
-                (asset: ALAsset!) in
+                (asset: ALAsset?) in
                 if (asset == nil){
                     return
                 }
-                callback(asset)
+                callback(asset!)
             }
             , failureBlock: {
                 (error: NSError!) in
@@ -223,6 +215,7 @@ class ProfileViewController: UIViewController {
     /**
     * goProfile
     * プロフィールページへ移動する
+    * TODO: 下のやつとまとめて関数化できそう...?
     *
     * param: sender
     */

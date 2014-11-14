@@ -14,7 +14,7 @@ protocol ThemeColorPickerDelegate {
 
 class ThemeColorPicker: UIView {
     
-    var delegate: AddUserViewController! = nil
+    var delegate: AddUserViewController?
     
     var colors               = NSMutableArray()
     var themeColor: UIColor? = nil
@@ -22,6 +22,7 @@ class ThemeColorPicker: UIView {
     
     /**
     * setThemeColor
+    *
     * param: color
     */
     func setThemeColor(color: UIColor!) {
@@ -30,6 +31,7 @@ class ThemeColorPicker: UIView {
    
     /**
     * getThemeColor
+    *
     * returns: self.themeColor
     */
     func getThemeColor() -> UIColor? {
@@ -37,23 +39,9 @@ class ThemeColorPicker: UIView {
     }
     
     /**
-    * HSVtoHexString
-    * HSV形式のUIColorをHEX形式のStringにして返す
-    * param  : color hsv形式のUIColor
-    * returns: hex hex形式のカラーコード(ex.#81F7D8)
-    */
-    func HSVtoHexString(color: UIColor) -> NSString {
-        let components = CGColorGetComponents(color.CGColor)
-        var r = NSString(format:"%02X", NSInteger(components[0] * 255))
-        var g = NSString(format:"%02X", NSInteger(components[1] * 255))
-        var b = NSString(format:"%02X", NSInteger(components[2] * 255))
-        
-        return "\(r)\(g)\(b)"
-    }
-    
-    /**
     * init
     * protocolで宣言したイニシャライザinitを利用するために、修飾子requiredが必要
+    *
     * param  : aDecoder
     */
     required init(coder aDecoder: NSCoder) {
@@ -73,6 +61,7 @@ class ThemeColorPicker: UIView {
     /**
     * drawRect
     * Pickerに必要なContentを描画
+    *
     * param: rect
     */
     override func drawRect(rect: CGRect) {
@@ -82,7 +71,7 @@ class ThemeColorPicker: UIView {
                 var pixelX = CGFloat(j) / 19
                 
                 var color = self.createHSVColor(pixelX, y: pixelY) // 色を決定
-                colors.addObject(color)
+                self.colors.addObject(color)
                 
                 // 作成した色に基づくボタンの作成
                 var editBtn = UIButton()
@@ -113,6 +102,7 @@ class ThemeColorPicker: UIView {
     /**
     * createHSVColor
     * x, y座標を用いて、HSV形式のUIColorを作成する
+    *
     * param  : x
     * param  : y
     * 
@@ -129,6 +119,7 @@ class ThemeColorPicker: UIView {
     /**
     * selectThemeColor
     * 作成した色に基づくボタンを押した時のイベント
+    *
     * param: sender drawRect内におけるeditBtn
     */
     func selectThemeColor(sender: UIButton) {
@@ -145,10 +136,27 @@ class ThemeColorPicker: UIView {
     /**
     * decideThemeColor
     * 決定ボタンを押した際の処理
+    *
     * param: sender 決定ボタン
     */
     func decideThemeColor(sender: UIButton) {
         var color = getThemeColor() as UIColor?
-        self.delegate.themeColorPicker(self, themeColor: color)
+        self.delegate!.themeColorPicker(self, themeColor: color)
+    }
+    
+    /**
+    * HSVtoHexString
+    * HSV形式のUIColorをHEX形式のStringにして返す
+    *
+    * param  : color hsv形式のUIColor
+    * returns: hex hex形式のカラーコード(ex.#81F7D8)
+    */
+    func HSVtoHexString(color: UIColor) -> NSString {
+        let components = CGColorGetComponents(color.CGColor)
+        var r = NSString(format:"%02X", NSInteger(components[0] * 255))
+        var g = NSString(format:"%02X", NSInteger(components[1] * 255))
+        var b = NSString(format:"%02X", NSInteger(components[2] * 255))
+        
+        return "\(r)\(g)\(b)"
     }
 }

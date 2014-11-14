@@ -11,7 +11,6 @@ import UIKit
 class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate
                            , UIImagePickerControllerDelegate, ThemeColorPickerDelegate {
     
-    // Insert xib
     @IBOutlet weak var textFieldOfUserName  : UITextField!
     @IBOutlet weak var textFieldOfNickName  : UITextField!
     @IBOutlet weak var textFieldOfLiving    : UITextField!
@@ -46,6 +45,7 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
     @IBAction func registUserInfo(sender: UIButton) {
         var alert = UIAlertView()
         
+        // TODO: この判定ひどいのでどうにかする
         if (self.textFieldOfUserName.text == "" || self.textFieldOfNickName.text == "" || self.textFieldOfLiving.text == ""
         || self.textFieldOfMessage.text == "" || self.textFieldOfEnneagram.text == "" || self.pickerOfThemeColor.text == ""
         || self.pickerOfMovie.text == "" || self.pickerOfFace.text == "" || self.pickerOfPicture.text == ""){
@@ -58,15 +58,15 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
         let defaults = NSUserDefaults.standardUserDefaults()
         let uuid = NSUUID().UUIDString
         var dict = [
-            "userName"    : self.textFieldOfUserName.text
-            , "nickName"  : self.textFieldOfNickName.text
-            , "living"    : self.textFieldOfLiving.text
-            , "message"   : self.textFieldOfMessage.text
-            , "ennegram"  : self.textFieldOfEnneagram.text
-            , "themeColor": self.pickerOfThemeColor.text
-            , "movie"     : self.pickerOfMovie.text
-            , "face"      : self.pickerOfFace.text
-            , "picture"   : self.pickerOfPicture.text
+            "userName"     : self.textFieldOfUserName.text
+            , "nickName"   : self.textFieldOfNickName.text
+            , "living"     : self.textFieldOfLiving.text
+            , "message"    : self.textFieldOfMessage.text
+            , "ennegram"   : self.textFieldOfEnneagram.text
+            , "themeColor" : self.pickerOfThemeColor.text
+            , "movie"      : self.pickerOfMovie.text
+            , "face"       : self.pickerOfFace.text
+            , "picture"    : self.pickerOfPicture.text
         ]
         
         defaults.setObject(dict, forKey: uuid)
@@ -94,7 +94,7 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
     * param: pickerId
     */
     func showPickerView(pickerId: NSInteger) {
-        // カラーピッカーの場合は呼び出さない
+        // カラーピッカーを呼び出す
         if (pickerId == 1){
             var colorPicker = ThemeColorPicker(frame: self.view.frame)
             colorPicker.delegate = self
@@ -126,7 +126,7 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
     * param: themeColor UIcolorまたはNil
     */
     func themeColorPicker(picker: ThemeColorPicker, themeColor: UIColor?) {
-        if ((themeColor) != nil){
+        if (themeColor != nil){
             var hexColor = picker.HSVtoHexString(themeColor!) as NSString
             self.pickerOfThemeColor.text = hexColor
         }
@@ -142,9 +142,8 @@ class AddUserViewController: UIViewController, UITextFieldDelegate, UINavigation
     * param: info   ピッカーによって選択された写真・または動画情報
     */
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        let url = info[UIImagePickerControllerReferenceURL] as NSURL
         
-        // swiftでは自動的にbreakされる？
+        let url = info[UIImagePickerControllerReferenceURL] as NSURL
         switch (picker.view.tag){
           case 2:
             self.pickerOfMovie.text   = url.absoluteString

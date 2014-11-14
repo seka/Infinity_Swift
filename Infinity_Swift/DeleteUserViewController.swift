@@ -11,8 +11,11 @@ import UIKit
 class DeleteUserViewController: UIViewController {
     
     // NSUserDefaultsから取得するユーザ情報
-    var userIds = NSMutableArray()
-    var colors  = NSMutableArray()
+    var userIds   = NSMutableArray()
+    var userNames = NSMutableArray()
+    var colors    = NSMutableArray()
+
+    var buttons : NSMutableArray?
     
     /**
     *  viewWillAppear
@@ -24,86 +27,96 @@ class DeleteUserViewController: UIViewController {
     }
     
     /**
-    * selectedButton
-    * ボタンをタップした際に呼び出されるイベント
-    *
-    * param: btn タップされたボタンオブジェクト
-    */
-    func selectedButton(btn: UIButton!) {
-        var index = btn.tag
-        var userId = self.userIds[index] as NSString
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.removeObjectForKey(userId)
-        
-        self.removeButtons(index)
-        self.accessForUserDefaults()
-        self.drawButtons()
-    }
-    
-    /**
     * accessForUserDefaults
     * NSUserDefaultsの情報を取得し、配列に格納する
     */
     func accessForUserDefaults() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        var appName = NSBundle.mainBundle().bundleIdentifier
-        var dicts   = defaults.persistentDomainForName(appName!) as NSDictionary!
+        self.userIds   = NSMutableArray()
+        self.userNames = NSMutableArray()
+        self.colors    = NSMutableArray()
+
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var appName  = NSBundle.mainBundle().bundleIdentifier
+        var dicts    = defaults.persistentDomainForName(appName!) as NSDictionary?
         
         if (dicts == nil){
             return
         }
         
-        self.userIds = NSMutableArray()
-        for (key, dict) in dicts {
+        for (key, dict) in dicts! {
             self.userIds.addObject(key)
+            self.userNames.addObject(dict["userName"] as NSString)
+            self.colors.addObject(dict["themeColor"] as NSString)
         }
     }
     
     /**
-    * drawButton
+    * drawButtons
     * NSUserDefaultsの情報を基に、ボタンを作成する
     *
     * param: btn タップされたボタンオブジェクト
     */
     func drawButtons() {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        var appName = NSBundle.mainBundle().bundleIdentifier
-        var dicts   = defaults.persistentDomainForName(appName!) as NSDictionary!
+        if (self.userIds.count < 1 || self.userNames.count < 1){
+            return
+        }
         
-        var count = 0
-        for (key, dict) in dicts {
-            var userName = dict["userName"] as NSString!
-            
+        self.buttons = NSMutableArray()
+        
+        for i in 0 ..< self.userIds.count {
             var btn = UIButton()
-            btn.frame = CGRectMake(self.view.bounds.width / 2 - 110, 180 + CGFloat(70 * count), 220, 60)
-            btn.tag = count++
+            btn.frame = CGRectMake(self.view.bounds.width / 2 - 110, 180 + CGFloat(70 * i), 220, 60)
+            btn.tag = i
             
-            btn.setTitle(userName, forState: .Normal)
+            btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
+            btn.setTitle(self.userNames[i] as NSString, forState: .Normal)
             btn.setTitleColor(UIColor.blackColor(), forState: .Normal)
 
-            let scanner = NSScanner(string: dict["themeColor"] as NSString)
+            let scanner = NSScanner(string: self.colors[i] as NSString)
             var hexValue: CUnsignedLongLong = 0
-            if scanner.scanHexLongLong(&hexValue) {
+            if (scanner.scanHexLongLong(&hexValue)) {
                 var red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
                 var green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
                 var blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
-                btn.backgroundColor = UIColor(red: red, green:green, blue:blue, alpha:1)
+                btn.backgroundColor = UIColor(red: red, green: green, blue: blue, alpha: 1)
             }
-            
-            btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
+
+            self.buttons!.addObject(btn)
+
             self.view.addSubview(btn)
         }
     }
     
     /**
-    * removeButtons
-    * viewに存在するボタンを削除する
+    * selectedButton
+    * ボタンをタップした際に呼び出されるイベント, ボタンに対応したデータをNSUserDefaultsから削除する
+    *
+    * param: btn タップされたボタンオブジェクト
     */
-    func removeButtons(index: NSInteger) {
+    func selectedButton(btn: UIButton!) {
+        self.removeButtons(btn)
+        
+        var index  = btn.tag
+        var userId = self.userIds[index] as NSString
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.removeObjectForKey(userId)
+        defaults.synchronize()
+        
+        self.accessForUserDefaults()
+        self.drawButtons()
+    }
+    
+    /**
+    * removeButtons
+    * viewに存在するボタンをすべて削除する
+    */
+    func removeButtons(btn: UIButton) {
         for view in self.view.subviews {
-            if (view.tag == index) {
-                view.removeFromSuperview()
+            for btn in self.buttons! {
+                if (btn as UIButton == view as NSObject){
+                    view.removeFromSuperview()
+                }
             }
         }
     }

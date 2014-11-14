@@ -12,10 +12,10 @@ import AVFoundation
 
 class HomeViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet var themeColorLabels: [UILabel]!
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet var themeColorLabels : [UILabel]!
+    @IBOutlet weak var scrollView  : UIScrollView!
     
-    var audioPlayer: AVAudioPlayer! = AVAudioPlayer()
+    var audioPlayer: AVAudioPlayer!
     
     // 次のページへ渡すユーザ情報
     var selectedUserId = NSString()
@@ -36,10 +36,10 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     let maxScrollableImages = 10000
     
     // 画面に映る最も左端の画像のインデックス
-    var leftImageIndex:NSInteger = 0
+    var leftImageIndex = 0
     
     // 画面に映る中心の画像のインデックス(テーマカラーの変更にのみ利用)
-    var centerImageIndex:NSInteger = 1
+    var centerImageIndex = 1
     
     // 左に移動したか右に移動したかを判別するためのステータス
     enum ScrollDirection {
@@ -48,8 +48,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     }
     
     // 画面外に待機している両端の画像のインデックス
-    var leftViewIndex :NSInteger = 0
-    var rightViewIndex:NSInteger = 0
+    var leftViewIndex  = 0
+    var rightViewIndex = 0
    
     // ボタンアニメーション用のフラグ
     var animated = false
@@ -68,7 +68,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         var mainBundle = NSBundle.mainBundle()
         var filePath   = mainBundle.pathForResource("bgm", ofType: "wav")
         var fileURL    = NSURL(fileURLWithPath: filePath!)
-        self.audioPlayer = AVAudioPlayer(contentsOfURL: fileURL, error: nil)
+        self.audioPlayer = AVAudioPlayer(contentsOfURL: fileURL!, error: nil)
         
         self.audioPlayer.numberOfLoops = -1;
         
@@ -103,7 +103,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         var appName  = NSBundle.mainBundle().bundleIdentifier
         var dicts    = defaults.persistentDomainForName(appName!) as NSDictionary?
 
-        if (dicts? == nil){
+        if (dicts == nil){
             return
         }
         
@@ -122,30 +122,30 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             let scanner = NSScanner(string: dict["themeColor"] as NSString)
             var hexValue: CUnsignedLongLong = 0
             if scanner.scanHexLongLong(&hexValue) {
-                var red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
-                var green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
-                var blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
+                let red   = CGFloat((hexValue & 0xFF0000) >> 16) / 255.0
+                let green = CGFloat((hexValue & 0x00FF00) >> 8)  / 255.0
+                let blue  = CGFloat( hexValue & 0x0000FF)        / 255.0
                 self.colors.addObject(UIColor(red:red, green:green, blue:blue, alpha:1.0))
             }
             
             // 左端に表示するボタン
-            var btn = UIButton()
+            let btn = UIButton()
             btn.frame = CGRectMake(32, 320 + CGFloat(30 * count), 110, 30)
             btn.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
             btn.tag = count++
             
-            var userName = dict["userName"] as NSString!
+            let userName = dict["userName"] as NSString
             btn.setTitle(userName, forState: .Normal)
             btn.setTitleColor(UIColor.blueColor(), forState: .Normal)
             btn.addTarget(self, action: "selectedButton:", forControlEvents: .TouchUpInside)
             self.view.addSubview(btn)
            
             // assetLibraryの処理が非同期であるため、同期処理を行うように変更
-            var semaphore = dispatch_semaphore_create(0)
+            let semaphore = dispatch_semaphore_create(0)
             dispatch_async(qGlobal, {
-                var strPath = dict["face"] as NSString!
-                var facePath = NSURL(string: strPath)
-                self.lodingPhotoContent(facePath!, semaphore: semaphore)
+                let strPath = dict["face"] as NSString
+                let facePath: NSURL? = NSURL(string: strPath)
+                self.lodingPhotoContent(facePath?, semaphore: semaphore)
             })
             
             // assetLibraryのcallbackを待っている状態
@@ -157,18 +157,18 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * lodingPhotoContent
     * photoContetntsをAssetsから読み出す
     */
-    func lodingPhotoContent(path: NSURL!, semaphore: dispatch_semaphore_t) {
+    func lodingPhotoContent(path: NSURL?, semaphore: dispatch_semaphore_t) {
         let assetLibrary = ALAssetsLibrary()
         assetLibrary.assetForURL(
             path
             , resultBlock: {
-                (asset: ALAsset!) in
+                (asset: ALAsset?) in
                 if (asset == nil){
                     return
                 }
                 
                 // 普通の画像を取得するとメモリ的な理由でアプリが落ちてしまうようなので、サムネイル画像を取得
-                let image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
+                let image = UIImage(CGImage: asset!.thumbnail().takeUnretainedValue())
                 self.images.addObject(image!)
                 
                 // 待ち状態の解除
@@ -186,7 +186,6 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * スクロールバーに関する初期化処理
     */
     func updateScrollViewSetting() {
-        
         if (self.images.count < 1){
             return
         }
@@ -204,9 +203,9 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         // 画像の初期位置の設定
         for (var i = 0; i < self.images.count; i++){
-            var image = self.images[i] as UIImage
+            let image = self.images[i] as UIImage
             
-            var btn = UIButton()
+            let btn = UIButton()
             btn.frame = CGRectMake(imageWidth * CGFloat(i), 20, imageWidth, imageHeight)
             btn.tag = i
             
@@ -231,8 +230,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: scrollView スクロールビュー
     */
     func scrollViewDidScroll(scrollView:UIScrollView) {
-        var currentIndex :NSInteger = NSInteger(self.scrollView.contentOffset.x / imageWidth)
-        var indexMovement:NSInteger = currentIndex - self.leftImageIndex
+        let currentIndex  = NSInteger(self.scrollView.contentOffset.x / imageWidth)
+        let indexMovement = currentIndex - self.leftImageIndex
         
        	for (var i = 0; i < abs(indexMovement); i++) {
             if (indexMovement > 0){
@@ -263,8 +262,8 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
     * param: scrollDirection 左に移動したのか、右に移動したのかを示すステータス変数
     */
     func scrollWithDirection(scrollDirection:ScrollDirection) {
-        var direction :NSInteger = 0
-        var viewIndex :NSInteger = 0
+        var direction = 0
+        var viewIndex = 0
         
         if (scrollDirection == ScrollDirection.kScrollDirectionLeft){
             direction = -1
@@ -275,7 +274,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             viewIndex = self.leftViewIndex
         }
         
-        var btn = self.contentsOfScroll[viewIndex] as UIButton
+        let btn = self.contentsOfScroll[viewIndex] as UIButton
         btn.frame.origin.x += imageWidth * CGFloat(self.images.count * direction)
         
         // 画面に映る最も左の画像のインデックスを更新
@@ -313,12 +312,12 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             return
         }
         
-        var index = btn.tag
+        let index = btn.tag
         self.selectedUserId = self.userIds[index] as NSString
         
         // タップされたボタンに軽いアニメーションを適用する
         animated = true
-        var animation = CABasicAnimation(keyPath:"position")
+        let animation = CABasicAnimation(keyPath:"position")
         animation.duration    = 0.1
         animation.repeatCount = 3
         animation.fromValue = NSValue(CGPoint:btn.layer.position)
