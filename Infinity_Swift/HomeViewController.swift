@@ -64,7 +64,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         
         super.viewDidLoad()
         
-        self.faceImageOfScrollView.delegate = self
+        self.faceImageOfscrollView.delegate = self
         
         // オーディオプレイヤーの用意
         var mainBundle = NSBundle.mainBundle()
@@ -92,7 +92,7 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
         self.centerImageIndex = 1
         self.animated         = false
         
-        for view in self.faceImageOfScrollView.subviews {
+        for view in self.faceImageOfscrollView.subviews {
             view.removeFromSuperview()
         }
         
@@ -248,13 +248,13 @@ class HomeViewController: UIViewController, UIScrollViewDelegate {
             
             self.contentsOfScroll.addObject(btn)
             
-            self.faceImageOfScrollView.addSubview(btn)
+            self.faceImageOfscrollView.addSubview(btn)
         }
         
         // ScrollViewへの初期設定
-        self.faceImageOfScrollView.contentOffset = contentOffSet
-        self.faceImageOfScrollView.contentSize   = contentSize
-        self.faceImageOfScrollView.showsHorizontalScrollIndicator = false
+        self.faceImageOfscrollView.contentOffset = contentOffSet
+        self.faceImageOfscrollView.contentSize   = contentSize
+        self.faceImageOfscrollView.showsHorizontalScrollIndicator = false
     }
     
     /**
